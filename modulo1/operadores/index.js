@@ -88,10 +88,10 @@ alert("Questão 3")
     console.log("O primeiro numero é maior que segundo? -", numero1===numero2)
 
     let divisivel1 = numero1 % numero2
-    console.log("O primeiro numero é maior que segundo? -", divisivel1 === 0)
+    console.log("O primeiro numero divisivel pelo segundo? -", divisivel1 === 0)
 
     let divisivel2 = numero2 % numero1
-    console.log("O primeiro numero é maior que segundo? -", divisivel2 === 0)
+    console.log("O segundo numero é divisivel pelo primeiro  ? -", divisivel2 === 0)
 
 
 alert("* * * * DESAFIO * * * *")
