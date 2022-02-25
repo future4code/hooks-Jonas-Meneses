@@ -208,7 +208,7 @@ quest(2)
             break;
     }
     
-    let valorTotal = quantDeIgressos*valorDoIngressoDesafio*cambio
+    let valorTotal = (quantDeIgressos*valorDoIngressoDesafio)/cambio
     
     console.log("---Dados da compra---")
     console.log(`Nome do Cliente: ${nome}`)
@@ -217,7 +217,7 @@ quest(2)
     console.log(`Categoria ${categoria}`)
     console.log(`Quantidade de INgressos: ${quantDeIgressos} ingressos`)
     console.log("---Valores---")
-    console.log(`Valor do ingresso: r$ ${valorDoIngressoDesafio*cambio}`)
+    console.log(`Valor do ingresso: r$ ${valorDoIngressoDesafio/cambio}`)
     console.log(`Valor Total: ${valorTotal}`, erro)    
-    //no internacional deu um valor diferente do exemplo do notion, mas ta certo, se vc fizer a conversão para dolar e multiplicar pela quantidade da o valor
+    //no enunciado ele pede pra multiplicar, mas acho q é dividir. No exemplo 2 o resultado ta como dividido. Mas se for multiplicar mesmo é só alterar o operado para multiplicar(na linha 211 e 220).
     
