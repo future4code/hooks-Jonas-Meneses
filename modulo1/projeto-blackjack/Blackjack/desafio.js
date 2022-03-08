@@ -49,6 +49,11 @@ while (condicao) {
 
                condicao = false
                condicao2 = false
+            }else if(somarCartas(cartasUsuario) === 21){
+               alert(` Usuario-cartas ${mensagem(cartasUsuario)} - Pontuação: ${somarCartas(cartasUsuario)}\n Computador - Cartas: ${mensagem(cartasPc)} - Pontuação: ${somarCartas(cartasPc)} \n Usuario ganhou ganhou!!!` )
+               
+               condicao = false
+               condicao2 = false
             }
          }else{
             while(somarCartas(cartasPc)<somarCartas(cartasUsuario)){
