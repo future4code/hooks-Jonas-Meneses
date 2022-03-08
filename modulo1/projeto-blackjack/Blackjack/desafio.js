@@ -9,9 +9,8 @@ let addCartas = (qt, array) =>{
 }
 
 let somarCartas = (array) =>{
-   let i = 0
    let somaCartas = 0
-   for(i in array){
+   for(let i in array){
       somaCartas += array[i].valor 
    }
    return somaCartas
