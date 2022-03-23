@@ -104,48 +104,89 @@ function classificaTriangulo(ladoA, ladoB, ladoC) {
 
 // EXERCÍCIO 10
 function retornaSegundoMaiorESegundoMenor(array) {
-    let newArray =  array.sort(function(a, b) {
+    let newArray = array.sort(function(a, b) {
         return a - b;
       })
-    
     let arrayFinal = []
-    arrayFinal.push(newArray[0])
+    arrayFinal.push(newArray[newArray.length - 2])
     arrayFinal.push(newArray[1])
-    
     return arrayFinal
 }
 
 // EXERCÍCIO 11
 function retornaChamadaDeFilme(filme) {
-   
+
+    return(`Venha assistir ao filme ${filme.nome}, de ${filme.ano}, dirigido por ${filme.diretor} e estrelado por ${filme.atores}.`)
+    
 }
 
 // EXERCÍCIO 12
 function retornaPessoaAnonimizada(pessoa) {
-   
+   let newOjbject = {
+        ...pessoa,
+        "nome": "ANÔNIMO"
+       
+    }
+
+   return newOjbject
 }
 
 // EXERCÍCIO 13A
 function retornaPessoasAutorizadas(pessoas) {
-   
+
+    return pessoas.filter(item =>{
+        return item.idade > 14 && item.idade <60 && item.altura >= 1.5
+    })
 }
 
 // EXERCÍCIO 13B
 function retornaPessoasNaoAutorizadas(pessoas) {
-  
+    
+    return pessoas.filter(item =>{
+        return (item.idade <= 14 || item.idade > 60) || item.altura < 1.5
+   })
+
 }
 
 // EXERCÍCIO 14
 function retornaContasComSaldoAtualizado(contas) {
 
+    for(let i = 0; i<contas.length; i++){
+
+        let totalCompras = 0
+
+        for(let e of contas[i].compras){
+            totalCompras += e
+        }
+
+        let novoSaldo = contas[i].saldoTotal - totalCompras
+        
+        contas[i] = {...contas[i], "saldoTotal":novoSaldo,"compras":[]}
+    }
+    console.log(contas)
+    return contas
 }
 
 // EXERCÍCIO 15A
 function retornaArrayOrdenadoAlfabeticamente(consultas) {
-  
+  consultas.sort(function(a, b) {
+    if(a.nome < b.nome) {
+      return -1;
+    } else {
+      return true;
+    }
+  })
+  return consultas
+  //fonte de pesquisa https://www.horadecodar.com.br/2021/01/11/como-ordenar-um-array-de-objetos-em-javascript/
 }
 
 // EXERCÍCIO 15B
 function retornaArrayOrdenadoPorData(consultas) {
+
+    return consultas.sort(function(a,b){
+        new Date (a.dataDaConsulta).valueOf() - new Date (b.dataDaConsulta).valueOf
+    })
    
+    // o mais proximo q eu achei -> https://www.youtube.com/watch?v=AmQ1OX7XBJw
+
 }
