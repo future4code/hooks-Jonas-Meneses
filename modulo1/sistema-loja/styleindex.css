@@ -1,0 +1,83 @@
+*{
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+header{
+    background-color: rgb(19, 54, 19);
+    padding: 10px 20px;
+    font-family: 'Courier New', Courier, monospace;
+    color: white;
+    text-align: center;
+}
+
+nav{
+    background-color: beige;
+    text-align: center;
+    padding: 10px;
+}
+
+nav a{
+    text-decoration: none;
+    color: rgb(19, 54, 19);
+    font-weight: bold;
+    padding: 10px 10px;
+}
+
+nav a:hover{
+    background-color: rgba(30, 119, 30, 0.623);
+    color: white;
+}
+
+#slide{
+    height: 400px;
+}
+
+#cardPrincipal{
+    background-blend-mode: color;
+    background-image: url(img/flores.jpg);
+    background-size: cover;
+    background-position: right;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.color{
+    background-color: rgba(0, 0, 0, 0.534);
+}
+
+#textCardPrincipal{
+    width: 40%;
+    text-align: center;
+    
+}
+
+#textCardPrincipal h2{
+    color: white;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 50px;
+}
+
+#produtusIndex{
+    text-align: center;
+    padding: 30px 20px;
+}
+
+#buttonProdIndex{
+    padding: 10px;
+}
+
+footer{
+    text-align: center;
+    padding: 20px 20px 5px 20px;
+    background-color: gray;
+}
+
+footer p{
+    padding: 20px;
+}

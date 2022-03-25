@@ -4,67 +4,70 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="styleEstoque.css">
+   
     <title>Controle de Estoque</title>
 </head>
 <body >
-    <div style="text-align: center;">
-    <h1>Bem-vind@ a <em>Flora Floral</em>!</h1>
-    <p><u>Seja um jardim no qual apenas os bons sentimentos florescem!</u></p>
-</div>
+    <header>
+    <h1>Flora Floral!</h1>
+    <p>Seja um jardim no qual apenas os bons sentimentos florescem!</p>
+    </header>
     
-    <div>
+    <nav>
         <a href="index.html">Página Inicial</a>
         <a href="#">Controle de Estoque</a>
         <a href="add-produto.html">Adicionar Produto</a>
         <a href="funcionarios.html">Funcionários</a>
-    </div>
+    </nav>
 
+    
+
+<main>
+    
     <h2>Controle de Estoque</h2>
 
-    <table style="border: 1px solid gray">
-        <tr>
-            <th>Foto</th>
-            <th>Descrição</th>
-            <th>Preço (R$)</th>
-            <th>Quantidade disponível</th>
-        </tr>
-
-        <tr > 
-            <td ><img src="img/caixa.png" alt="caixa de flores" style="width: 100px;"/></td>
-            <td style=" padding: 0px 10px;"> Box Lovely </td>
-            <td style="padding: 0px 10px;"> 165,00 </td>
-            <td style="text-align: center;"> 5 </td>
-        </tr>
-
-        <tr>
-            <td><img src="img/box.jpg" alt="box de flores" style="width: 100px;"/></td>
-            <td> Box Mix de Flores G </td>
-            <td> 400,00 </td>
-            <td> 5 </td>
-        </tr>
-
-        <tr >
-            <td><img src="img/buque.png" alt="Buque de flores"style="width: 100px;"/></td>
-            <td> Ramalhete de flores </td>
-            <td> 400,00 </td>
-            <td> 5 </td>
-        </tr >
-
-        <tr>
-            <td><img src="img/vaso-de-flor.png" alt="vaso com planta" style="width: 100px;"/></td>
-            <td> Bico de Papagaio </td>
-            <td> 50,00 </td>
-            <td> 15 </td>
-        </tr>
-        
-        <tr>
-            <td><img src="img/mix.png" alt="box de flores e chocolates" style="width: 100px;"/></td>
-            <td> Sweet Box </td>
-            <td> 500,00 </td>
-            <td> 15 </td>
-        </tr>
-        
-    </table>
+    <div id="table">
+        <table>
+            <tr">
+                <th id="th">Foto</th>
+                <th>Descrição</th>
+                <th>Preço (R$)</th>
+                <th>Quantidade disponível</th>
+            </tr>
+            <tr >
+                <td id="th"><img src="img/caixa.png" alt="caixa de flores" style="width: 100px;"/></td>
+                <td style=" padding: 0px 10px;"> Box Lovely </td>
+                <td style="padding: 0px 10px;"> 165,00 </td>
+                <td style="text-align: center;"> 5 </td>
+            </tr>
+            <tr>
+                <td><img src="img/box.jpg" alt="box de flores" style="width: 100px;"/></td>
+                <td> Box Mix de Flores G </td>
+                <td> 400,00 </td>
+                <td> 5 </td>
+            </tr>
+            <tr >
+                <td><img src="img/buque.png" alt="Buque de flores"style="width: 100px;"/></td>
+                <td> Ramalhete de flores </td>
+                <td> 400,00 </td>
+                <td> 5 </td>
+            </tr >
+            <tr>
+                <td><img src="img/vaso-de-flor.png" alt="vaso com planta" style="width: 100px;"/></td>
+                <td> Bico de Papagaio </td>
+                <td> 50,00 </td>
+                <td> 15 </td>
+            </tr>
+            <tr>
+                <td><img src="img/mix.png" alt="box de flores e chocolates" style="width: 100px;"/></td>
+                <td> Sweet Box </td>
+                <td> 500,00 </td>
+                <td> 15 </td>
+            </tr>
+        </table>
+    </div>
+</main>
 
 </body>
 </html>
