@@ -4,53 +4,70 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="styleProdutos.css">
+    <link rel="stylesheet" href="styleindex.css">
     <title>Adicionar Produto</title>
 </head>
 <body>
-    <div style="text-align: center;">
-        <h1>Bem-vind@ a <em>Flora Floral</em>!</h1>
-        <p><u>Seja um jardim no qual apenas os bons sentimentos florescem!</u></p>
-    </div>
+    <header>
+        <h1>Flora Floral!</h1>
+        <p>Seja um jardim no qual apenas os bons sentimentos florescem!</p>
+    </header>
     
-    <div>
+    <nav>
         <a href="index.html">Página Inicial</a>
         <a href="ctrl-estoque.html">Controle de Estoque</a>
         <a href="#">Adicionar Produto</a>
         <a href="funcionarios.html">Funcionários</a>
-    </div>
+    </nav>
 
     
-    <h2>Adicionar Produto</h2>
-    <form action="add-produto.html">
-        <div>
-            <label for="link-foto">Link para foto: </label>
-            <input type="url" id="link-foto" name="link-foto">
-        </div>
+    <main>
+        <section>
+            <h2>Adicionar Produto</h2>
+            <form action="add-produto.html">
+                <div>
+                    <label for="link-foto">Link para foto: </label> <br>
+                    <input type="url" id="link-foto" name="link-foto">
+                </div>
         
-        <div>
-            <label for="descricao">Descrição do produto: </label>
-            <!-- Adicione o id apropriado para o input abaixo -->
-            <input type="text" id="descricao-produto" name="descrição">
-        </div>
+                <div>
+                    <label for="preco">Preço (em R$): </label><br>
+                    <!-- Adicione o id apropriado e o type para receber números abaixo -->
+                    <input type="number" id="precoproduto" name="preço">
+                </div>
         
+                <div>
+                    <!-- Preencha as propriedades necessárias para os elementos abaixo -->
+                    <label>Quantidade disponível: </label> <br>
+                    <input type="number" id="quantidade" name="quantidade">
+                </div>
+
+                <div>
+                    <label for="descricao">Descrição do produto: </label> <br>
+                    <!-- Adicione o id apropriado para o input abaixo -->
+                    <textarea name="Descricao" id="descricao" cols="30" rows="10"></textarea>
+                </div>
+
+                <div class="form-add">
+                    <!-- Adicione ao type do botão abaixo o valor para que ele submeta o formulário -->
+                    <button type="submit" id="enviar">Adicionar</button>
+                </div>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>Siga-nos nas redes sociais!</p>
+
         <div>
-            <label for="preco">Preço (em R$): </label>
-            <!-- Adicione o id apropriado e o type para receber números abaixo -->
-            <input type="number" id="precoproduto" name="preço">
+            <a href="https://web.whatsapp.com"><img src="img/whatsapp.png"/></a>
+            <a href="https://www.instagram.com"><img src="img/instagram.png"/></a>
+            <a href="https://twitter.com/login?lang=pt"><img src="img/twitter.png"/></a>
         </div>
-        
         <div>
-            <!-- Preencha as propriedades necessárias para os elementos abaixo -->
-            <label>Quantidade disponível: </label>
-            <input type="number" id="quantidade" name="quantidade">
+            <p>Desenvolvido por <a href="https://www.instagram.com/jonaslevy_m" target="_Blank">Jonas Levy</a>.</p>
         </div>
-
-        <div class="form-add">
-            <!-- Adicione ao type do botão abaixo o valor para que ele submeta o formulário -->
-            <button type="" id="submit">Adicionar</button>
-        </div>
-
-    </form>
-
+    </footer>
 </body>
 </html>

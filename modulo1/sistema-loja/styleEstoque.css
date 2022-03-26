@@ -1,0 +1,43 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+header{
+    background-color: rgb(19, 54, 19);
+    padding: 10px 20px;
+    font-family: 'Courier New', Courier, monospace;
+    color: white;
+    text-align: center;
+}
+
+nav{
+    background-color: beige;
+    text-align: center;
+    padding: 10px;
+}
+
+nav a{
+    text-decoration: none;
+    color: rgb(19, 54, 19);
+    font-weight: bold;
+    padding: 10px 10px;
+}
+
+nav a:hover{
+    background-color: rgba(30, 119, 30, 0.623);
+    color: white;
+}
+main{
+    text-align: center ;
+
+}
+
+main table{
+    display: flex;
+    justify-content: center;
+    border: 1px solid black;
+    margin: 50px;
+   
+}
+
