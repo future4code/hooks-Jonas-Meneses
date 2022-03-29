@@ -4,8 +4,6 @@
   *
   **/
 
-  @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
-
 * {
     margin: 0;
     padding: 0;
@@ -61,7 +59,7 @@ div img {
 }
 
 .icone {
-    width: 20px;
+    width: 15px;
     height: auto;
 }
 
@@ -78,9 +76,11 @@ div img {
     padding: 30px 0;
 }
 
-#container-de-descricao>ol {
+#container-de-descricao ol {
     padding: 15px 0px;
 }
+
+
 
 #container-para-comprar {
     background-color: #e7eb90;
@@ -117,7 +117,7 @@ table td{
 
 td button {
     background-color: #fadf63;
-    width: 150px;
+    width: 140px;
     height: 30px;
     border-radius: 5px;
     color: black;
@@ -141,7 +141,10 @@ td img{
     height: 100px;
 }
 
-
+.back-button{
+    text-align: center;
+    padding: 50px;
+}
 #back-button {
     background-color: white;
     width: 100px;
@@ -150,6 +153,7 @@ td img{
     border-radius: 5px;
     font-size: 10px;
     color: black;
+    margin: 0px auto;
 }
 
 #back-button:hover {
