@@ -13,60 +13,163 @@
 <body>
     <main>
         <!--Sessão inicial do site com background-->
-            <header>
+            <header class="sobrepor" id="cabecalho">
                 <nav>
                     <a href="#sobremim">Sobre mim</a>
-                    <a href="#">Projetos</a>
-                    <a href="#">Formação</a>
+                    <a href="#projetos">Projetos</a>
+                    <a href="#habilidades">Habilidades</a>
+                    <a href="#contato">Contato</a>
+                    <a href="redesSociais">Redes Sociais</a>
                 </nav>
-                <div id="textoInicial">
-                    <p>Hello world!</p> <br>
-                    <h1>Olá, eu sou Jonas Levy</h1>
-                    <p id="dev">	&lt; / 	&gt;</p>
+                <div id="containerInicial">
+
+                    <div id="textoInicial">
+                        <p>Hello world!</p> <br>
+                        <h1>Olá, eu sou Jonas Levy</h1>
+                        <p>Desenvolvedor Full Stack em Formação.</p>
+
+                        <p id="dev">	&lt; / 	&gt;</p>
+                    </div>
+                    <div id="imageInicial">
+                        <img src="images/perfilredondo.png" alt="">
+                    </div>
                 </div>
+                <div id="arrow">
+                    <a href="#sobremim"><img src="images/down-arrow.png" alt=""></a>
+                </div>
+
             </header>
-        <!--Fim da Sessão inicial do site com background-->
 
         <!--Sobre mim-->
-        <section id="sobremim">
-            <div id="imageInicial">
+        <article id="sobremim"> 
+                <div id="containerSobremim">
+                    <h2>Sobre mim</h2>
+                    <p>Natural  de Fortaleza-Ce, 31 anos, casado, pai da Pricesa Ana Esther. <br>
+                        Amo Praia, amo viajar, Assistir séries e documentários   </p>
+                </div>
+
+            <section id="instituicoes">
+            <h2>Instituições de ensino</h2>
+            <div class="conatainerCursos">
+                <div>
+                    <h3>Labenu:</h3>
+                    <ol>
+                        <li>Curso: Web Full Stack</li>
+                        <li>Duração: 01/22 a 02/23</li>
+                    </ol>
+                </div>
+                <div>
+                    <h3>Uniasselvi:</h3>
+                    <ol>
+                        <li>Curso: Análise e Desenvolvimento de Sistemas</li>
+                        <li>Cursando 1º semestre</li>
+                    </ol>
+                </div>
             </div>
-            <article id="txtsobremim">
-                <h2>titulo</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque dignissimos placeat suscipit, mollitia aperiam rem voluptatem, inventore cumque sunt, odit tempora. Illo temporibus fugiat dolorum minus repellat maxime perspiciatis vero?</p>
-            </article>
+            
         </section>
-        <!--Fim da sessãoSobre mim-->
+        </article>
+        <!--Fim da sessão Sobre mim-->
 
         <!-- lista de instituições de ensino e empregadores prévios-->
-        <section id="instituicoes">
-            <h2>lista de instituições de ensino e empregadores prévios</h2>
-        </section>
+        
         <!-- Fim da lista de instituições de ensino e empregadores prévios-->
 
         <!--galeria de projetos-->
         <section id="projetos">
-            <h1>Projetos</h1>
+            <h2>Projetos</h2>
             <section id="gridprojetos">
-                <div class="cardProject">...</div>
-                <div class="cardProject">...</div>
-                <div class="cardProject">...</div>
-                <div class="cardProject">...</div>
-                <div class="cardProject">...</div>
+                    <div class="cardProject">
+                        <a href="">
+                            <div class=" imgCardProj">
+                                <img src="images/proj4.png" alt="">
+                            </div>
+                            <div>
+                                <h3 class="txtProj">Projetos do Curso em Video</h3>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="cardProject">
+                        <a href="">
+                            <div class=" imgCardProj">
+                                <img src="images/proj5.png" alt="">
+                            </div>
+                            <div class="txtProj">
+                                <h3>projetos pessoais</h3>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="cardProject">
+                        <a href="">
+                            <div class=" imgCardProj">
+                                <img src="images/dira.png" alt="">
+                            </div>
+                            <div class="txtProj">
+                                <h3>Sites WordPress</h3>
+                            </div>
+                        </a>
+                    </div>
             </section>
         </section>
         <!--fim da galeria de projetos-->
 
         <!-- lista de habilidades -->
-        <h2>habilidades</h2>
+        <Section id="habilidades">
+            <div id="containerHabilidades">
+                <h2>Habilidades</h2>
+                <h2>Linguagens que trabalho.</h2>
+                <div id="liguagemConnhecimento">
+                    <div class="iconLinguagens">
+                        <img src="images/html-5.png" alt="">
+                    </div>
+                    <div class="iconLinguagens">
+                        <img src="images/css-3.png" alt="">
+                    </div>
+                    <div class="iconLinguagens">
+                        <img src="images/js.png" alt="">
+                    </div>
+                </div>
+
+                <h2>Linguagens que já trabalhei.</h2>
+                <div class="linguagemQueTrabalhei">
+                    <div class="iconLinguagens">
+                        <img src="images/c.png" alt="">
+                    </div>
+                    <div class="iconLinguagens">
+                        <img src="images/pitao.png" alt="">
+                    </div>
+                    <div class="iconLinguagens">
+                        <img src="images/wordpress.png" alt="">
+                    </div>
+                </div>
+            </div>
+
+        </Section>
         <!-- fim lista de habilidades -->
 
         <!-- formulário para contato -->
-        <h2>formulário de contatos</h2>
-        <!-- Fim formulário para contato -->
+        <section id="contato">
+            <div class="containerContato">
+                <h2>Contato</h2>
+                <div class="ContainerInput">
+                    <label for=""><p>Nome:</p> <input type="text"></label>
+                    <label for=""><p>Email</p> <input type="email"></label>
+                    <label for=""><p>Informação:</p> <textarea name="" id="" cols="30" rows="10"></textarea></p></label>
+                    <label for=""><input type="submit" value="Enviar" class="submit"></label>
+                </div>
+            </div>
+
+        </section>
 
         <!--lista de redes sociais e links-->
-        <h2>links</h2>
+        <section id="redesSociais">
+            <h2>Redes Socias</h2>
+            <div id="containerIconRedes">
+                <a href="https://instagram.com/jonaslevy_m" target="_Black"><img src="images/instagram.png" alt=""></a>
+                <a href="https://www.linkedin.com/in/jonas-levy-892b84230/" target="_Black"><img src="images/linkedin.png" alt=""></a>
+                <a href="https://github.com/JonasLevy" target="_Black"><img src="images/github.png" alt=""></a>
+            </div>
+        </section>
         <!--Fim lista de redes sociais e links-->
 
     </main>
