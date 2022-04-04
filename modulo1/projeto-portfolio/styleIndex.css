@@ -27,10 +27,48 @@ html {
 
 }
 /* MENUS DE NAVEGACAO*/
-nav{
+#pc{
     text-align: center;
     padding: 10px 0px ;
     background-color: rgba(0, 0, 0, 0.568);
+}
+
+#mobile{
+    display: none;
+    width: 80%;
+    height: auto;
+    padding: 10px;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+#botao{
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    border: 0.7px solid white;
+    cursor: pointer;
+
+}
+
+#botao div{
+    padding: 2px;
+    height: 400px;
+    background-color: white;
+    margin: 2px;
+}
+
+#containerLinks{
+    width: 0%;
+    display: flex;
+    flex-direction: column;
+    background-color: #566975;
+    overflow: hidden;
+    transition: 0.5s;
+
 }
 
 header a{
@@ -153,8 +191,7 @@ header nav a:hover{
 #gridprojetos{
    width: 100%;
    height: 300px;
-   display: grid;
-   grid-template-columns: repeat(3, 1fr);
+   display: flex;
    justify-content: center;
    align-items: center;
    margin: 20px auto;
@@ -163,12 +200,13 @@ header nav a:hover{
 
 .cardProject{
     width: 90%;
-    height: 200px;
+    height: 80%;
     background-color: #566975;
     margin: 10px auto ;
     border-radius: 10% 0;
     overflow: hidden;
     box-shadow: 2px 2px 10px black;
+    margin: 10px;
 }
 
 .cardProject h3{
@@ -177,7 +215,7 @@ header nav a:hover{
 
 .cardProject:hover{
     width: 95%;
-    height: 208px;
+    height: 85%;
     overflow: hidden;
     cursor: pointer;
 }
@@ -206,7 +244,7 @@ header nav a:hover{
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 500px;
+    height: 550px;
     width: 80%;
     margin: 20px auto;
 }
@@ -229,12 +267,12 @@ header nav a:hover{
 
 #liguagemConnhecimento{
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     padding: 20px;
 }
 
 .iconLinguagens img{
-    width: 100px;
+    width: 45%;
 }
 
 .linguagemQueTrabalhei{
@@ -243,7 +281,7 @@ header nav a:hover{
 }
 
 .linguagemQueTrabalhei img{
-    width: 90px;
+    width: 35%;
 }
 
 /*CONTATO*/
@@ -254,7 +292,7 @@ header nav a:hover{
 
 .containerContato{
     text-align: center;
-    width: 400px;
+    width: 30%;
     background-color: rgb(202, 199, 199);
     border-radius: 10%;
     padding: 20px;
@@ -290,5 +328,72 @@ header nav a:hover{
 
 @media(max-width:680px){
 
+    #cabecalho{
+        padding-bottom: 40px;
+        justify-content: space-around;
+    }
+
+    #containerInicial{
+        width: 90%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
     
+    }
+
+    #textoInicial h1{
+        font-size: 1.3rem;
+    }
+
+    #imageInicial img{
+        width: 200px;
+    }
+
+    #arrow img{
+        width: 50px;
+        opacity: 0.8;
+    }
+
+    #dev{
+        font-size: 1.5rem;
+        padding: 20px;
+    }
+
+    #pc{
+        display: none;
+    }
+    
+    #mobile{
+        display: block;
+        width: 80%;
+        
+    }
+
+    #containerInicial{
+        
+        justify-content: center;
+    
+    }
+
+    .conatainerCursos{
+        flex-direction: column;
+    }
+
+    .conatainerCursos div{
+        margin: 10px;
+    }
+
+    #gridprojetos{
+        height: 100vh;
+        flex-direction: column;
+    }
+
+    #habilidades{
+        height: 430px;
+    }
+
+    .containerContato{
+        width: 90%;
+    }
 }

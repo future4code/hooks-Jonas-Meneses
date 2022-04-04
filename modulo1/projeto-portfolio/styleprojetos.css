@@ -62,3 +62,21 @@ nav a:hover{
 .atual{
     background-color: rgba(66, 64, 64, 0.397);
 }
+
+@media(max-width:680px){
+    #containerProjeto{
+        flex-direction: column;
+    }
+
+    .imgSite{
+        width: 90%;
+    }
+    .info{
+        width: 90%;
+        padding:  0 20px;
+    }
+
+    nav a{
+        padding: 3px;
+    }
+}

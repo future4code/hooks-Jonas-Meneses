@@ -14,12 +14,26 @@
     <main>
         <!--Sessão inicial do site com background-->
             <header class="sobrepor" id="cabecalho">
-                <nav>
+                <nav id="pc">
                     <a href="#sobremim">Sobre mim</a>
                     <a href="#projetos">Projetos</a>
                     <a href="#habilidades">Habilidades</a>
                     <a href="#contato">Contato</a>
                     <a href="redesSociais">Redes Sociais</a>
+                </nav>
+                <nav id="mobile">
+                    <div id="botao" onclick="menu()">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                    <div id="containerLinks">
+                        <a href="#sobremim">Sobre mim</a>
+                        <a href="#projetos">Projetos</a>
+                        <a href="#habilidades">Habilidades</a>
+                        <a href="#contato">Contato</a>
+                        <a href="redesSociais">Redes Sociais</a>
+                    </div>
                 </nav>
                 <div id="containerInicial">
 
@@ -80,9 +94,9 @@
             <h2>Projetos</h2>
             <section id="gridprojetos">
                     <div class="cardProject">
-                        <a href="">
+                        <a href="projetoscursoemvideo.html">
                             <div class=" imgCardProj">
-                                <img src="images/proj4.png" alt="">
+                                <img src="images/cordel.png" alt="">
                             </div>
                             <div>
                                 <h3 class="txtProj">Projetos do Curso em Video</h3>
@@ -90,9 +104,9 @@
                         </a>
                     </div>
                     <div class="cardProject">
-                        <a href="">
+                        <a href="projetospessoais.html">
                             <div class=" imgCardProj">
-                                <img src="images/proj5.png" alt="">
+                                <img src="images/festa.png" alt="">
                             </div>
                             <div class="txtProj">
                                 <h3>projetos pessoais</h3>
@@ -100,9 +114,9 @@
                         </a>
                     </div>
                     <div class="cardProject">
-                        <a href="">
+                        <a href="projetoWorpress.html">
                             <div class=" imgCardProj">
-                                <img src="images/dira.png" alt="">
+                                <img src="images/dirap.png" alt="">
                             </div>
                             <div class="txtProj">
                                 <h3>Sites WordPress</h3>
@@ -174,5 +188,7 @@
 
     </main>
     <footer></footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
