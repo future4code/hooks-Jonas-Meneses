@@ -117,6 +117,7 @@ header nav a:hover{
 #arrow img{
     width: 70px;
     opacity: 0.8;
+    animation: arrow 2s ease-in-out infinite;
 }
 
 /* SOBRE MIM*/
@@ -324,6 +325,18 @@ header nav a:hover{
 
 #containerIconRedes img{
     width: 80px;
+}
+
+@keyframes arrow{
+    0%{
+        transform: translatey(0px)
+    }
+    50%{
+        transform: translatey(-20px)
+    }
+    100%{
+        transform: translatey(0px)
+    }
 }
 
 @media(max-width:680px){
