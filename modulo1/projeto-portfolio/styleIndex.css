@@ -2,25 +2,73 @@
     padding: 0px;
     margin: 0px;
     box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
 }
 
 html {
     scroll-behavior: smooth;
+    transition: 0.5;
 }
 
-#BackGroudImage{
-    background-image: linear-gradient(135deg, #314755, #26a0da);
-    width: 100%;
-    height: 50vh;
+#cabecalho{
+    height: 100vh;
+    background-blend-mode:color ;
+    background-image: url(images/imgheader.jpg);
+    background-position: center;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px;
 }
 
-header{
+.sobrepor{
+    background-color: #10121380;
+
+}
+/* MENUS DE NAVEGACAO*/
+#pc{
+    text-align: center;
+    padding: 10px 0px ;
+    background-color: rgba(0, 0, 0, 0.568);
+}
+
+#mobile{
+    display: none;
+    width: 80%;
+    height: auto;
+    padding: 10px;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+#botao{
+    width: 30px;
+    height: 30px;
     display: flex;
     justify-content: center;
-    padding: 30px;
-    overflow: none;
+    flex-direction: column;
+    border: 0.7px solid white;
+    cursor: pointer;
+
+}
+
+#botao div{
+    padding: 2px;
+    height: 400px;
+    background-color: white;
+    margin: 2px;
+}
+
+#containerLinks{
+    width: 0%;
+    display: flex;
+    flex-direction: column;
+    background-color: #566975;
+    overflow: hidden;
+    transition: 0.5s;
+
 }
 
 header a{
@@ -29,69 +77,336 @@ header a{
     font-weight: bold;
     padding: 10px;
     border-radius: 3px;
+   
 }
 
-header a:hover{
-    background-color: #a7afb475;
-    
+header nav a:hover{
+    background-color: #a7afb475;    
 }
+ 
 
-#containerTexto{
-    height: 100%;
+/* CONTEUDO INICIAL*/
+#containerInicial{
+    width: 90%;
     display: flex;
     align-items: center;
-    color: white;
+    justify-content: space-evenly;
+
 }
 
 #textoInicial{
-    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
+    color: white; 
+}
+#textoInicial h1{
+    font-size: 2.8rem;
 }
 
+#dev{
+    font-size: 2rem;
+}
+
+#imageInicial img{
+    width: 300px;
+}
+
+#arrow img{
+    width: 70px;
+    opacity: 0.8;
+    animation: arrow 2s ease-in-out infinite;
+}
+
+/* SOBRE MIM*/
 #sobremim{
-    padding: 3% 15%;
-    display: flex;
-    align-items: center;
-    height: auto;
-}
-#imageInicial{ 
-    width: 50vw;
-    max-width: 500px;
-    height: 500px;
-    background-image: url(images/perfil1.jpeg);
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: right;
+    width: 80%;
+    padding: 3% 5%;
+    text-align: center;
+    margin: 0 auto;
+
 }
 
+#containerSobremim{
+    padding: 20px;
+}
+
+#sobremim h2{
+    padding-bottom: 40px;
+    font-size: 2rem;
+}
 #txtsobremim{
+    padding: 30px;
     width: 50vw;
     padding: 20px;
 }
 
+/* instituicoes*/
+
+#instituicoes{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.conatainerCursos{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    /*border: 1px solid black;*/ 
+}
+
+#instituicoes div{
+    width: 100%;
+    text-align: start;
+  
+}
+
+#instituicoes ol{
+    width: 100%;
+    list-style-type: circle;
+    list-style-position: inside;   
+}
+
+/* PROJETOS*/
 #projetos{
+    padding: 20px;
     text-align: center;
+    background-image: linear-gradient(135deg, #5a7ae2, #c5d1dd) ;
+}
+
+#projetos h2{
+    color: white;
+    font-size: 2rem;
+}
+
+#projetos a{
+    text-decoration: none;
 }
 
 #gridprojetos{
-   width: 90%;
-   height: auto;
-   border: 1px solid black;
-   display: grid;
-   grid-template-columns: repeat(2, 1fr);
+   width: 100%;
+   height: 300px;
+   display: flex;
    justify-content: center;
+   align-items: center;
    margin: 20px auto;
 }
 
+
 .cardProject{
     width: 90%;
-    height: 200px;
-    background-color: #314755;
+    height: 80%;
+    background-color: #566975;
     margin: 10px auto ;
-   border: 1px solid black;
+    border-radius: 10% 0;
+    overflow: hidden;
+    box-shadow: 2px 2px 10px black;
+    margin: 10px;
+}
 
+.cardProject h3{
+    color: rgb(255, 255, 255);
+}
+
+.cardProject:hover{
+    width: 95%;
+    height: 85%;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.imgCardProj{
+    width: 100%;
+    height: 80%;
+    overflow: hidden;
+}
+
+.imgCardProj img{
+    object-fit: contain;
+    width: 100%;
+}
+
+.txtProj{
+    height: 20%;
+    padding: 5px;
+}
+
+
+/* HABILIDADES*/
+
+#habilidades{
+    background-image: linear-gradient(135deg, #7b4397, yellow, #dc2430);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 550px;
+    width: 80%;
+    margin: 20px auto;
+}
+
+#containerHabilidades{
+    width: 99%;
+    height: 98.5%;
+    padding: 10px;
+    background-color: white;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    
+}
+
+#containerHabilidades h2{
+    padding: 20px;
+    color: rgb(17, 16, 16);
+}
+
+#liguagemConnhecimento{
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+.iconLinguagens img{
+    width: 45%;
+}
+
+.linguagemQueTrabalhei{
+    display: flex;
+    justify-content: space-around;
+}
+
+.linguagemQueTrabalhei img{
+    width: 35%;
+}
+
+/*CONTATO*/
+#contato{
+    background-image: linear-gradient(135deg, #5a7ae2, #c5d1dd) ;
+    padding: 30px;
+}
+
+.containerContato{
+    text-align: center;
+    width: 30%;
+    background-color: rgb(202, 199, 199);
+    border-radius: 10%;
+    padding: 20px;
+    margin: 0 auto;
+}
+
+.ContainerInput{
+    text-align: start;
+}
+
+.submit{
+    padding: 5px;
+    cursor: pointer;
+}
+
+#redesSociais{
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+    
+}
+
+#containerIconRedes {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+}
+
+#containerIconRedes img{
+    width: 80px;
+}
+
+@keyframes arrow{
+    0%{
+        transform: translatey(0px)
+    }
+    50%{
+        transform: translatey(-20px)
+    }
+    100%{
+        transform: translatey(0px)
+    }
+}
+
+@media(max-width:680px){
+
+    #cabecalho{
+        padding-bottom: 40px;
+        justify-content: space-around;
+    }
+
+    #containerInicial{
+        width: 90%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    
+    }
+
+    #textoInicial h1{
+        font-size: 1.3rem;
+    }
+
+    #imageInicial img{
+        width: 200px;
+    }
+
+    #arrow img{
+        width: 50px;
+        opacity: 0.8;
+    }
+
+    #dev{
+        font-size: 1.5rem;
+        padding: 20px;
+    }
+
+    #pc{
+        display: none;
+    }
+    
+    #mobile{
+        display: block;
+        width: 80%;
+        
+    }
+
+    #containerInicial{
+        
+        justify-content: center;
+    
+    }
+
+    .conatainerCursos{
+        flex-direction: column;
+    }
+
+    .conatainerCursos div{
+        margin: 10px;
+    }
+
+    #gridprojetos{
+        height: 100vh;
+        flex-direction: column;
+    }
+
+    #habilidades{
+        height: 430px;
+    }
+
+    .containerContato{
+        width: 90%;
+    }
 }
