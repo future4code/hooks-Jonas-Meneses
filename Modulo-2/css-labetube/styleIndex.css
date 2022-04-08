@@ -100,12 +100,24 @@ footer{
 
 @media (max-width:500px) {
     header{
-        flex-direction: column;
+        position: fixed;
+        top: 0;
+        width: 100%;
+    }
+
+    header h1{
+        font-size: 1.3em;
+    }
+
+    #iconeLogo img{
+        width: 20px;
+        margin-right: 5px;
     }
 
     main{
         display: block;
         padding: 10px 15px;
+        margin-top: 40px;
     }
 
     .cardVideo{
