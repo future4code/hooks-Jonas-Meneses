@@ -1,0 +1,170 @@
+*{
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+  text-decoration: none;
+}
+
+.body{
+  background-color: rgb(41, 40, 40);
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: flex-end;
+}
+
+header{
+  width: calc(100% - 80px);
+  height: 110px;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  right: 0;
+}
+
+
+
+
+
+.logo-seach{
+  display: flex;
+  height: 50%;
+  border-bottom: 1px solid rgba(139, 136, 136, 0.486);
+  align-items: center;
+  
+}
+
+.logo p{
+  font-weight: bolder;
+  color: white;
+  margin: 0 30px;
+}
+
+.seach input{
+  width: 300px;
+  padding: 8px;
+  margin-left: 80px ;
+  color: black;
+}
+
+.preferencias{
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  height: 50%;
+  padding: 10px;
+  border-bottom: 1px solid rgba(139, 136, 136, 0.486);
+}
+
+.preferencisCard{
+  border: 1px solid rgba(255, 255, 255, 0.247);
+  border-radius: 15px;
+  padding: 5px 8px;
+  background-color: rgb(80, 76, 76);
+  color: white;
+  text-align: center;
+  display: flex;
+  align-items: center;
+}
+
+.barraLateral{
+  width: 80px;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+}
+
+.menuBarras{
+  width: 100%;
+  height: 50px;
+  background-color: gray;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.menuBarras div{
+  width: 50%;
+  height: 1px;
+  background-color: white;
+  margin: 3px;
+  cursor: pointer;
+}
+
+.menus{
+  width: 100%;
+  height: 70px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 10px;
+}
+
+.menus:hover{
+  background-color: rgba(151, 142, 142, 0.459);
+}
+
+
+.menus p{
+  font-size: 0.8em;
+  
+  color: white;
+}
+
+.gridVideos{
+  margin-top: 120px;
+  width: calc(100% - 80px);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, 250px);
+  row-gap: 10px;
+  column-gap: 10px;
+}
+
+.cardVideos{
+  background-color: aqua;
+  width: 100%;
+}
+
+.imgVideo{
+  height: 70%;
+  width: 100%;
+  background-color: blue;
+  display: flex;
+}
+
+.imgcanal-Titulo{
+  display: flex;
+  padding: 4px;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.img-canal{
+  width: 40px;
+  height: 40px;
+  background-color: red;
+  border-radius: 50%;
+  margin-right: 5px;
+
+}
+
+.tituloVideo{
+  color: white;
+  font-size: 0.7em;
+  overflow: hidden;
+  height: 42px;
+}
+
+.nomeCanal-Inscritos{
+  display: flex;
+  padding: 0 10px;
+}
+
+.nomecanal{
+  margin-right: 20px;
+}
