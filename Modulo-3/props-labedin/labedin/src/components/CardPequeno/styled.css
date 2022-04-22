@@ -1,0 +1,11 @@
+.cardPequeno {
+    display: flex;
+    padding: 20px;
+    border: 1px solid black;
+    width: 40vw;
+}
+
+.cardPequeno img{
+    width: 20px;
+    margin: 0px 10px;
+}
