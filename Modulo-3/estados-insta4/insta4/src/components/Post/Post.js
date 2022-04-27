@@ -7,6 +7,11 @@ import iconeCoracaoBranco from '../../img/favorite-white.svg'
 import iconeCoracaoPreto from '../../img/favorite.svg'
 import iconeComentario from '../../img/comment_icon.svg'
 import {SecaoComentario} from '../SecaoComentario/SecaoComentario'
+import iconeSalvarPreto from '../../img/saveBlack.png'
+import iconeSalvarWhite from '../../img/saveWhite.png'
+
+
+import IconeSemContador from '../IconeSemContador/iconeSemContador'
 
 const PostContainer = styled.div`
   border: 1px solid gray;
@@ -45,7 +50,8 @@ class Post extends React.Component {
     curtido: false,
     numeroCurtidas: 0,
     comentando: false,
-    numeroComentarios: 0
+    numeroComentarios: 0,
+    salvar: false
   }
 
   onClickCurtida = () => {
@@ -56,6 +62,10 @@ class Post extends React.Component {
     }else{
       this.setState({ numeroCurtidas : this.state.numeroCurtidas + 1})
     }
+  }
+
+  onClickSalvar = () =>{
+    this.setState({salvar : !this.state.salvar})
   }
 
   onClickComentario = () => {
@@ -83,8 +93,17 @@ class Post extends React.Component {
 
     let componenteComentario
 
+    
     if(this.state.comentando) {
       componenteComentario = <SecaoComentario aoEnviar={this.aoEnviarComentario} />
+    }
+    
+    let iconeSalvar
+
+    if (this.state.salvar == false){
+      iconeSalvar = iconeSalvarWhite
+    }else{
+      iconeSalvar = iconeSalvarPreto 
     }
 
     return <PostContainer>
@@ -107,6 +126,8 @@ class Post extends React.Component {
           onClickIcone={this.onClickComentario}
           valorContador={this.state.numeroComentarios}
         />
+
+        <IconeSemContador img={iconeSalvar} onClickIcon={this.onClickSalvar} />
       </PostFooter>
       {componenteComentario}
     </PostContainer>
