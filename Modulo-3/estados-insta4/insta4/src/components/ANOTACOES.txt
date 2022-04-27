@@ -1,0 +1,9 @@
+
+    {/*NÃO ENTENDI A CRIAÇÃO DESSA VARIAVEL, ACHO Q DEVE SER USADA NA FUNÇÃO ONCLICK DO CURTIR */}
+
+
+4- Dentro do JSX desse componente (a partir do return do método render, na linha 51), veja o componente IconeComContador. Repare que ele é usado 2 vezes. Em cada um dos usos delas, 3 valores são passados: icone, onClickIcone e valorContador. O que são esses valores? De onde eles vêm? Para onde eles vão?
+
+    IconeComContador é um componente que vai receber uma image, uma função  mostrar a quantodade de curtidas ou comentarios, os valores são passados por props, a imagem, a função do clique, e a quantiodades de curtidas 
+
+6- Os próximos dois passos se referem ao o checkpoint 1 -Agora, vamos olhar para o estado do componente Post. Observe o estado é inicial dele. Repare que 4 propriedades são inicializadas: curtido, numeroCurtidas, comentando e numeroComentarios. Tente encontrar onde essas 4 propriedades são utilizadas no código.
