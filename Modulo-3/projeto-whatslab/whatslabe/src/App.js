@@ -37,6 +37,12 @@ class App extends React.Component {
       const novoArray = [...this.state.mensagens, recebeObjetos]
       this.setState({mensagens : novoArray, inputMensagem:"", key:this.state.key+1})
       
+    }else{
+      if(this.state.inputUser<1){
+        alert("Usuario em branco!")
+      }else{
+        alert("Mensagem em branco")
+      }
     }
   }
   
