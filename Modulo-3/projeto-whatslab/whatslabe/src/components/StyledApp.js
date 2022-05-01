@@ -1,5 +1,31 @@
 import styled from "styled-components"
 
+export const Containermain = styled.main`
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #bbb;
+ 
+`
+
+export const CardMensagem = styled.div`
+  max-width: 80%;
+  min-width: 10%;
+  height: auto;
+  background-color: white;
+  margin:8px 0px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: start;
+  border-radius: 0px 10px 10px 10px;
+  box-sizing: border-box;
+  padding: 10px 5px;
+  box-shadow: 2px 2px 5px #555;
+
+`
 
 export const ContainerMensagens = styled.div`
   height: 90%;
@@ -10,6 +36,8 @@ export const ContainerMensagens = styled.div`
   background-image: url(https://i.pinimg.com/736x/7c/29/29/7c2929ff41f2406df117969a5bf46bf7.jpg);
   background-size: contain;
   overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
 `
 
 export const TitleUser = styled.p`

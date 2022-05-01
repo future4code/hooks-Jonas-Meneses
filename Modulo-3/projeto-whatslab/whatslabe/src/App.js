@@ -1,39 +1,10 @@
 import React from "react";
-import styled from 'styled-components'
-import {ContainerMensagens, TitleUser, Mensagem,ContainerInputs, InputUser,InputMensagem,ButaoEnviar,ContainerWhats, Valor} from '././components/StyledApp'
-
-const Containermain = styled.main`
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: #bbb;
- 
-`
-
-const CardMensagem = styled.div`
-  max-width: 80%;
-  min-width: 10%;
-  height: auto;
-  background-color: white;
-  margin:8px 0px;
-  display: flex;
-  justify-content: flex-start;
-  align-items: start;
-  border-radius: 0px 10px 10px 10px;
-  box-sizing: border-box;
-  padding: 10px 5px;
-  box-shadow: 2px 2px 5px #555;
-
-`
-
+import {CardMensagem, Containermain ,ContainerMensagens, TitleUser, Mensagem,ContainerInputs, InputUser,InputMensagem,ButaoEnviar,ContainerWhats, Valor} from '././components/StyledApp'
 
 class App extends React.Component {
   state ={
     mensagens:[],
-    inputUser:"", inputMensagem:"",
+    inputUser:"", inputMensagem:"",key:0, click:0
   }
 
   onChangeUser = (event) =>{
@@ -44,6 +15,18 @@ class App extends React.Component {
     this.setState({inputMensagem: event.target.value})
   }
 
+  onKeyEnviar = (event) =>{
+    if(event.keyCode ===13){
+     this.addMensagem()
+    }
+  }
+
+  
+  remover = () =>{
+    this.setState({click: this.state.click+1})
+    console.log(this.state.click, this.state.key, this.state.mensagens[this.state.key-1].user)
+  }
+
   addMensagem = () =>{
     if(this.state.inputUser.length > 0 && this.state.inputMensagem.length >0 ){
       const recebeObjetos={
@@ -52,36 +35,30 @@ class App extends React.Component {
       }
       
       const novoArray = [...this.state.mensagens, recebeObjetos]
-      this.setState({mensagens : novoArray, inputMensagem:""})
+      this.setState({mensagens : novoArray, inputMensagem:"", key:this.state.key+1})
       
     }
-  
-    
-    console.log(this.state.inputUser.length)
-    
   }
   
   render(){
-  
     return (
       <Containermain>
         <ContainerMensagens>  
         
           {this.state.mensagens.map((msg,i)=>{
             return(
-              <CardMensagem key={i}>
+              <CardMensagem key={i} onClick={this.remover}>
                 <TitleUser > {msg.user}:</TitleUser>
                 <Mensagem>{msg.mensagem}</Mensagem>
               </CardMensagem>)
             }
           )}
-
         </ContainerMensagens>  
         
-        <ContainerInputs>
+        <ContainerInputs onKeyUp={this.onKeyEnviar}>
            <InputUser onChange={this.onChangeUser} value={this.state.inputUser} placeholder="Usuario"/> 
            <InputMensagem onChange={this.onChangeMensagem} value={this.state.inputMensagem} placeholder="mensagem"/>
-           <ButaoEnviar onClick={this.addMensagem}> send</ButaoEnviar>
+           <ButaoEnviar onClick={this.addMensagem} > send</ButaoEnviar>
         </ContainerInputs>
       </Containermain>
     );
