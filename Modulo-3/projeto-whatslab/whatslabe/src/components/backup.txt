@@ -1,0 +1,114 @@
+import React from "react";
+import styled from 'styled-components'
+
+const ContainerWhats = styled.main`
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #bbb;
+`
+
+const ContainerMensagens = styled.div`
+  height: 90%;
+  width: 500px;
+  border: 1px solid black;
+  box-sizing: border-box;
+  background-color: #bb8;
+`
+const CardMensagem = styled.div`
+  width: 80%;
+  height: 50px;
+  padding: 10px;
+  background-color: white;
+  margin:5px 0px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+`
+const TitleUser = styled.h3`
+
+`
+const Mensagem = styled.p`
+  margin: 10px;
+`
+
+const ContainerInputs = styled.div`
+  height: 10%;
+  width: 500px;
+  background-color: #242;
+  display: flex;
+  justify-content: center;
+  box-sizing: border-box;
+  align-items: center;
+`
+const InputUser = styled.input`
+  margin: 0px 10px;
+`
+const InputMensagem = styled.input`
+
+`
+const ButaoEnviar = styled.button`
+
+`
+class App extends React.Component {
+  state ={
+    mensagens:[],
+    inputUser:"", inputMensagem:""
+  }
+
+  onChangeUser = (event) =>{
+    this.setState({inputUser: event.target.value})
+  }
+
+  onChangeMensagem = (event) =>{
+    this.setState({inputMensagem: event.target.value})
+  }
+
+  addMensagem = () =>{
+    if(this.state.inputUser.length > 0 && this.state.inputMensagem.length >0 ){{
+      const recebeObjetos={
+      user:this.state.inputUser,
+      mensagem: this.state.inputMensagem
+      }
+    
+      const novoArray = [...this.state.mensagens, recebeObjetos]
+      this.setState({mensagens : novoArray, inputMensagem:""})
+    }
+  }
+    
+    console.log(this.state.inputUser.length)
+  }
+  
+  render(){
+    
+  
+    return (
+      <ContainerWhats>
+        <ContainerMensagens>  
+        
+          {this.state.mensagens.map((msg,i)=>{
+            return(
+              <CardMensagem key={i}>
+                <TitleUser> {msg.user}:</TitleUser>
+                <Mensagem>{msg.mensagem}</Mensagem>
+              </CardMensagem>)
+            }
+          )}
+
+        </ContainerMensagens>  
+        
+        <ContainerInputs>
+           <InputUser onChange={this.onChangeUser} value={this.state.inputUser}/> 
+           <InputMensagem onChange={this.onChangeMensagem} value={this.state.inputMensagem} />
+           <ButaoEnviar onClick={this.addMensagem}> send</ButaoEnviar>
+        </ContainerInputs>
+
+      </ContainerWhats>
+    );
+  }
+}
+
+export default App;
