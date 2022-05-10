@@ -29,6 +29,7 @@ class App extends React.Component {
 
   addMensagem = () =>{
     if(this.state.inputUser.length > 0 && this.state.inputMensagem.length >0 ){
+      
       const recebeObjetos={
       user:this.state.inputUser,
       mensagem: this.state.inputMensagem
