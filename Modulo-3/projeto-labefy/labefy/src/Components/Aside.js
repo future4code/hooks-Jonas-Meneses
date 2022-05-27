@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import {AiFillBackward} from 'react-icons/ai'
 
 const ContainerAsside = styled.aside`
     width: 250px;
@@ -55,8 +56,8 @@ class Aside extends React.Component {
                     {listaRederizada.map(list => {
                         return (
                             <li key={list.id}
-                                onClick={()=>this.props.onClicklList(list.id)}>
-                                {list.name}
+                                onClick={()=>this.props.onClicklList(list.id, list.name)}>
+                                {list.name} <AiFillBackward/>
                             </li>
                         )
                     })}
