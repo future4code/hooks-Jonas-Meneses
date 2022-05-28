@@ -22,16 +22,19 @@ const headers = {
 class Main extends React.Component {
 
   state = {
-    nameUser:this.props.nome,
+    nameUser: this.props.nome,
     allPlayList: [],
     allMusic: [],
     inputPlayList: "",
     idPlayList: "",
-    nomePlayList:"",
+    nomePlayList: "",
     nomeAddMusic: "",
     valueArtistaMusic: "",
     valueLinkMusic: "",
-    showPlay: false
+    valueInputPesquiPlay:"",
+    showPlay: false,
+    urlMusic:"",
+    test:""
   }
 
   //======================== PlayList ==============================
@@ -74,21 +77,37 @@ class Main extends React.Component {
     }
   }
 
+  teste = ()=>{
+    this.setState({test: "paused"})
+  }
+
   //-------------------------- Delet List --------------------------
 
-  deletePlayList= ()=>{
-    const urlDelete = url+'/'+this.state.idPlayList
-    axios.delete(urlDelete,headers).then(()=>{
+  deletePlayList = () => {
+    const urlDelete = url + '/' + this.state.idPlayList
+    axios.delete(urlDelete, headers).then(() => {
       alert(`PlayLista ${this.state.nomePlayList} apagada`)
-      this.setState({idPlayList:""})
+      this.setState({ idPlayList: "" })
       this.getAllPlayList()
-    }).catch((err)=>{
+    }).catch((err) => {
       console.log(err)
       alert("deu ruim")
     })
   }
 
+  //-------------------------- pesquisar List --------------------------
+
+  onChangePesquiPlay =(event)=>{
+    this.setState({valueInputPesquiPlay: event.target.value})
+  }
+
   //======================== Music ==============================
+
+  //--------------------- Play Music -----------------------
+
+  playMusic =(url)=>{
+    this.setState({urlMusic : url})
+  }
 
   //--------------------- Create Music -----------------------
   onchangeNome = (event) => {
@@ -105,18 +124,18 @@ class Main extends React.Component {
   }
 
   onClickIconAddMusic = () => {
-    const urlPost = url+"/"+ this.state.idPlayList + "/tracks"
+    const urlPost = url + "/" + this.state.idPlayList + "/tracks"
     const body = {
       "name": this.state.nomeAddMusic,
       "artist": this.state.valueArtistaMusic,
       "url": this.state.valueLinkMusic
     }
 
-    axios.post(urlPost, body, headers).then(()=>{
+    axios.post(urlPost, body, headers).then(() => {
       alert("Musica add a playList")
-      this.setState({nomeAddMusic:"",valueArtistaMusic:"",  valueLinkMusic:""})
+      this.setState({ nomeAddMusic: "", valueArtistaMusic: "", valueLinkMusic: "" })
       this.onClickGetMusics(this.state.idPlayList)
-    }).catch((err)=>{
+    }).catch((err) => {
       alert("deu ruim")
       console.log(err)
     })
@@ -127,7 +146,7 @@ class Main extends React.Component {
   onClickGetMusics = (id, name) => {
     const urlPost = "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/" + id + "/tracks"
     axios.get(urlPost, headers).then((resp) => {
-      this.setState({ allMusic: resp.data.result.tracks, idPlayList: id, nomePlayList:name })
+      this.setState({ allMusic: resp.data.result.tracks, idPlayList: id, nomePlayList: name })
     }).catch((err) => {
       console.log(err)
       console.log(id)
@@ -152,7 +171,7 @@ class Main extends React.Component {
   //======================== RENDER ==============================
   render() {
     const allPlayList = this.state.allPlayList
-    console.log(this.state.allMusic)
+    console.log(this.state.urlMusic)
     return (
       <Body>
         <Aside playList={allPlayList}
@@ -160,27 +179,41 @@ class Main extends React.Component {
           value={this.state.inputPlayList}
           onClick={this.onClickPlayList}
           onClicklList={this.onClickGetMusics}
+          nameUser={this.state.nameUser}
+          onChangePesquiPlay={this.onChangePesquiPlay}
+          valueInputPesquiPlay={this.state.valueInputPesquiPlay}
+          pesquisaPlaylist={this.state.valueInputPesquiPlay}
         />
 
-      {this.state.idPlayList ?
-        <MusicRenderizada
-        // props renderização da lista de musicas
-          nomePlayList={this.state.nomePlayList}
-          listaMusic={this.state.allMusic}
-          delete={this.deleteMusic}
+        {this.state.idPlayList ?
+          <MusicRenderizada
+            // props renderização da lista de musicas
+            nomePlayList={this.state.nomePlayList}
+            listaMusic={this.state.allMusic}
+            delete={this.deleteMusic}
 
-        // props campo adicionar
-          onchangeNome={this.onchangeNome}
-          valueNome={this.state.nomeAddMusic}
-          onchangeArtista={this.onchangeArtista}
-          valueArtista={this.state.valueArtistaMusic}
-          onchangeLink={this.onchangeLink}
-          valueLink={this.state.valueLinkMusic}
-          iconAdd={this.onClickIconAddMusic}
+            // props input pesquisa
+            onChangePesquiPlay={this.onChangePesquiPlay}
+            valueInputPesquiPlay={this.state.valueInputPesquiPlay}
 
-        //props apagar playlist
-          iconRemove={this.deletePlayList}
-        /> : <EscolhaAPlay />
+            // props campo adicionar
+            onchangeNome={this.onchangeNome}
+            valueNome={this.state.nomeAddMusic}
+            onchangeArtista={this.onchangeArtista}
+            valueArtista={this.state.valueArtistaMusic}
+            onchangeLink={this.onchangeLink}
+            valueLink={this.state.valueLinkMusic}
+            iconAdd={this.onClickIconAddMusic}
+
+            //props apagar playlist
+            iconRemove={this.deletePlayList}
+
+            //props play Music
+            playMusic={this.playMusic}
+            urlMusic={this.state.urlMusic}
+            test={this.state.test}
+          />
+          : <EscolhaAPlay />
         }
       </Body>
     );

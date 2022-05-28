@@ -15,19 +15,26 @@ const ContainerMusic = styled.div`
     main{
         width: calc(100% - 300px);
         text-align: center;
-        color: #cccccc;
+        color: #cccccc;  
 
         .musicasRend{
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(3, 1fr);
             justify-items: center;
             align-items: center;
             box-sizing: border-box;
-            gap: 10px ;
+            row-gap: 10px ;
             border-top: 1px solid #bbbbbb;
             margin: 0px;
+            padding-top: 15px;
 
 
+        }
+        audio{
+            width: 30%;
+            position: fixed;
+            right: 38%;
+            bottom: 5px;
         }
     }
 
@@ -71,6 +78,8 @@ const ContainerMusic = styled.div`
                 color: #ff5555;
             }
         }
+
+       
     }
 `
 
@@ -103,7 +112,6 @@ const CardMusic = styled.div`
 class MusicRenderizada extends React.Component {
     render() {
         const listaMusic = this.props.listaMusic
-
         return (
             <ContainerMusic>
 
@@ -117,7 +125,7 @@ class MusicRenderizada extends React.Component {
                                     <p>{msc.artist}</p>
                                     <div className="buttons">
                                         <img src="https://cdn-icons-png.flaticon.com/512/1069/1069272.png"
-                                            onClick={() => this.props.play(msc.id)} />
+                                            onClick={() => this.props.playMusic(msc.url)} />
                                         <img src="https://cdn-icons-png.flaticon.com/512/3096/3096673.png"
                                             onClick={() => this.props.delete(msc.id)} />
                                     </div>
@@ -125,6 +133,8 @@ class MusicRenderizada extends React.Component {
                             )
                         })}
                     </div>
+                    <audio controls src={this.props.urlMusic} autoPlay/>
+
                 </main>
                 <div className="addRemove">
 
@@ -147,7 +157,6 @@ class MusicRenderizada extends React.Component {
                     </div>
 
                 </div>
-
 
             </ContainerMusic>
         )

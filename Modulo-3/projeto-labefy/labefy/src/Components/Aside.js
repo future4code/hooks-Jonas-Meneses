@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import {AiFillBackward} from 'react-icons/ai'
+import { AiFillBackward } from 'react-icons/ai'
 
 const ContainerAsside = styled.aside`
     width: 250px;
@@ -17,10 +17,16 @@ const ContainerAsside = styled.aside`
     h1{
         font-size: 2.5em;
         margin: 10px;
+        border-bottom:1px solid #e5e5e5;
+        padding: 8px;
     }
 
     span{
         color: #ff5500;
+    }
+
+    ul{
+        border-top: 1px solid #e5e5e5;
     }
 
     li{
@@ -45,23 +51,35 @@ class Aside extends React.Component {
 
     render() {
 
-        const listaRederizada = this.props.playList
-
+        const listaRederizada = this.props.playList.filter((music)=>{
+            
+            if(music.name.includes(this.props.pesquisaPlaylist)){
+                return music
+            }
+        })
+        console.log(listaRederizada)
         return (
             <ContainerAsside>
                 <h1>
                     Labe<span>fy</span>
                 </h1>
-                <ul>
-                    {listaRederizada.map(list => {
-                        return (
-                            <li key={list.id}
-                                onClick={()=>this.props.onClicklList(list.id, list.name)}>
-                                {list.name} <AiFillBackward/>
-                            </li>
-                        )
-                    })}
-                </ul>
+                <p>Olá <strong>{this.props.nameUser}</strong>!</p>
+                <div>
+                    <input placeholder="Pesquise aqui sua PlayList"
+                        onChange={this.props.onChangePesquiPlay}
+                        value={this.props.valueInputPesquiPlay}
+                    />
+                    <ul>
+                        {listaRederizada.map(list => {
+                            return (
+                                <li key={list.id}
+                                    onClick={() => this.props.onClicklList(list.id, list.name)}>
+                                    {list.name} <AiFillBackward />
+                                </li>
+                            )
+                        })}
+                    </ul>
+                </div>
 
                 <h3>
                     Criar PlayList
