@@ -1,6 +1,7 @@
 import React from 'react';
-import Main from './Components/Main';
-import TelaInicial from './Components/TelaInicial';
+import Main from './Components/Main/Main';
+import TelaInicial from './Components/TelaInicial/TelaInicial';
+
 
 class App extends React.Component {
   state={

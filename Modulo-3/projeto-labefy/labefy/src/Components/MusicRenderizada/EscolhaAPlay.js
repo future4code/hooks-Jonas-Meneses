@@ -11,6 +11,10 @@ const ContainerEscolha = styled.div`
     background-size: contain;
     background-position: center;
     color: #cccccc;
+    @media(max-width:720px){
+        display: none;
+    }
+
 `
 
 class EscolhaAPlay extends React.Component{

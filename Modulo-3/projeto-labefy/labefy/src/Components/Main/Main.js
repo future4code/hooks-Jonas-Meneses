@@ -1,15 +1,17 @@
 import styled from 'styled-components';
-import axios from 'axios';
+import axios, { Axios } from 'axios';
 import React from 'react';
-import Aside from './Aside';
-import MusicRenderizada from './MusicRenderizada';
-import EscolhaAPlay from './EscolhaAPlay';
+import MusicRenderizada from '../MusicRenderizada/MusicRenderizada';
+import EscolhaAPlay from '../MusicRenderizada/EscolhaAPlay';
+import Aside from '../Aside/Aside';
+import Mobile from '../Mobile/Mobile';
 
 const Body = styled.div`
   margin: 0px;
   padding: 0px;
   box-sizing: border-box;
   display: flex;
+  
 `
 
 const url = "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists"
@@ -31,13 +33,16 @@ class Main extends React.Component {
     nomeAddMusic: "",
     valueArtistaMusic: "",
     valueLinkMusic: "",
-    valueInputPesquiPlay:"",
+    valueInputPesquiPlay: "",
     showPlay: false,
-    urlMusic:"",
-    test:""
+    urlMusic: "",
+    urlMusicMobile: "",
+    ApiSpot:[]
   }
 
   //======================== PlayList ==============================
+
+
 
   //-------------------------- Create  PlayList --------------------------
 
@@ -61,7 +66,6 @@ class Main extends React.Component {
     }
   }
 
-
   //-------------------------- get List --------------------------
 
   componentDidMount = () => {
@@ -77,8 +81,8 @@ class Main extends React.Component {
     }
   }
 
-  teste = ()=>{
-    this.setState({test: "paused"})
+  teste = () => {
+    this.setState({ test: "paused" })
   }
 
   //-------------------------- Delet List --------------------------
@@ -89,6 +93,7 @@ class Main extends React.Component {
       alert(`PlayLista ${this.state.nomePlayList} apagada`)
       this.setState({ idPlayList: "" })
       this.getAllPlayList()
+      this.setState({allMusic:[]})
     }).catch((err) => {
       console.log(err)
       alert("deu ruim")
@@ -97,19 +102,22 @@ class Main extends React.Component {
 
   //-------------------------- pesquisar List --------------------------
 
-  onChangePesquiPlay =(event)=>{
-    this.setState({valueInputPesquiPlay: event.target.value})
+  onChangePesquiPlay = (event) => {
+    this.setState({ valueInputPesquiPlay: event.target.value })
   }
 
   //======================== Music ==============================
 
   //--------------------- Play Music -----------------------
 
-  playMusic =(url)=>{
-    this.setState({urlMusic : url})
+  playMusic = (url) => {
+    this.setState({ urlMusic: url })
+  }
+  playMusicMobile = (url) => {
+    this.setState({ urlMusicMobile: url })
   }
 
-  //--------------------- Create Music -----------------------
+  //--------------------- Adicionar Music -----------------------
   onchangeNome = (event) => {
     this.setState({ nomeAddMusic: event.target.value })
   }
@@ -142,6 +150,7 @@ class Main extends React.Component {
   }
 
   //--------------------- get Music -----------------------
+  // captura o click as play lista e renderiza as musicas da playlist clicada
 
   onClickGetMusics = (id, name) => {
     const urlPost = "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/" + id + "/tracks"
@@ -171,9 +180,54 @@ class Main extends React.Component {
   //======================== RENDER ==============================
   render() {
     const allPlayList = this.state.allPlayList
-    console.log(this.state.urlMusic)
+
+    
+
+  //======================== RETURN ==============================
     return (
       <Body>
+        {/* Versão Mobile */}
+
+        <Mobile
+          //renderização e adicionar play list
+          nomePlayList={this.state.nomePlayList}
+          playList={allPlayList}
+          onChange={this.onChangePlayList}
+          value={this.state.inputPlayList}
+          onClick={this.onClickPlayList}
+          //input pesquisa Playlist
+          onChangePesquiPlay={this.onChangePesquiPlay}
+          valueInputPesquiPlay={this.state.valueInputPesquiPlay}
+
+          //nome do usuario
+          nameUser={this.state.nameUser}
+
+          //click renderização da musicas
+          onClicklList={this.onClickGetMusics}
+          listaMusic={this.state.allMusic}
+          idPlayList={this.state.idPlayList}
+
+          // props campo adicionar Musica
+          onchangeNome={this.onchangeNome}
+          valueNome={this.state.nomeAddMusic}
+          onchangeArtista={this.onchangeArtista}
+          valueArtista={this.state.valueArtistaMusic}
+          onchangeLink={this.onchangeLink}
+          valueLink={this.state.valueLinkMusic}
+          iconAdd={this.onClickIconAddMusic}
+
+          //props apagar playlist
+          iconRemove={this.deletePlayList}
+
+          //props deleta musica
+          delete={this.deleteMusic}
+
+          //props play Music
+          playMusicMobile={this.playMusicMobile}
+          urlMusic={this.state.urlMusicMobile}
+        />
+
+        {/* Versão PC */}
         <Aside playList={allPlayList}
           onChange={this.onChangePlayList}
           value={this.state.inputPlayList}
@@ -183,6 +237,17 @@ class Main extends React.Component {
           onChangePesquiPlay={this.onChangePesquiPlay}
           valueInputPesquiPlay={this.state.valueInputPesquiPlay}
           pesquisaPlaylist={this.state.valueInputPesquiPlay}
+          listaMusic={this.state.allMusic}
+
+          // props campo adicionar Musica
+          onchangeNome={this.onchangeNome}
+          valueNome={this.state.nomeAddMusic}
+          onchangeArtista={this.onchangeArtista}
+          valueArtista={this.state.valueArtistaMusic}
+          onchangeLink={this.onchangeLink}
+          valueLink={this.state.valueLinkMusic}
+          iconAdd={this.onClickIconAddMusic}
+
         />
 
         {this.state.idPlayList ?
@@ -191,10 +256,6 @@ class Main extends React.Component {
             nomePlayList={this.state.nomePlayList}
             listaMusic={this.state.allMusic}
             delete={this.deleteMusic}
-
-            // props input pesquisa
-            onChangePesquiPlay={this.onChangePesquiPlay}
-            valueInputPesquiPlay={this.state.valueInputPesquiPlay}
 
             // props campo adicionar
             onchangeNome={this.onchangeNome}
@@ -211,7 +272,6 @@ class Main extends React.Component {
             //props play Music
             playMusic={this.playMusic}
             urlMusic={this.state.urlMusic}
-            test={this.state.test}
           />
           : <EscolhaAPlay />
         }
