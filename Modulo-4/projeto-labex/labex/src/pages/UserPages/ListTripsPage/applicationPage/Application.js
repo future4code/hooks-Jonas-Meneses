@@ -4,15 +4,15 @@ import {useGetTrips} from "../../../../customHooks/useGetTrips"
 import axios from "axios"
 import { useEffect, useState } from "react"
 import {useGetCountries} from "../../../../customHooks/useGetCountries"
+import {goBack} from '../../../../Coordinator'
+
 
 
 
 const Application = () =>{
 
     const navigate = useNavigate()
-    const goBack = () =>{
-        navigate(-1)
-    }
+    
     const getTrips = useGetTrips()
         
     const getcountries = useGetCountries()
@@ -52,7 +52,7 @@ const Application = () =>{
             
         </section>
 
-        <button onClick={goBack}>Votar</button>
+        <button onClick={()=>goBack(navigate)}>Votar</button>
 
         </ContainerApplication>
     )
