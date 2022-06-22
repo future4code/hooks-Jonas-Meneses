@@ -10,14 +10,16 @@ const HomePage = () => {
     }
 
     const goToAdmin = () => {
-        navegate("/loginPage")
+        const token = localStorage.getItem('token')
+        token ?  navegate("/admin/listtrips") : navegate("/loginPage")
+        
     }
 
     return (
         <ContainerHomePage>
 
             <div className="container" >
-                <h1>LabeX</h1>
+                <h1>Labe<span>X</span></h1>
                 <section>
                     <button onClick={goToTrips}> Ver Viagens </button>
                     <button onClick={goToAdmin}> Area Administrativa </button>

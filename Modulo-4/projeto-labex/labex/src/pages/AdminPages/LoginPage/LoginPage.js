@@ -30,7 +30,7 @@ const LoginPage = (props) => {
         axios.post(url,body).then(resp=>{
             console.log(resp.data)
             localStorage.setItem("token", resp.data.token)
-            navigate("/adminHomePage")
+            navigate("/admin/list")
         }).catch(err=>{
             console.log(err)
         })

@@ -15,7 +15,7 @@ const Routers = () =>{
 
                 <Route index element={<HomePage />}  />
                 
-                <Route path="/adminHomePage" element={<AdminHomePage />} />
+                <Route path="/admin/:page" element={<AdminHomePage />} />
                 <Route path="/applicationFormPage" element={<ApplicationFormPage />} />
                 <Route path="/createtripPage" element={< CreatetripPage />} />
                 <Route path="/trips/:page" element={<ListTripspage />} />
