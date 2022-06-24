@@ -1,39 +1,31 @@
-import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { ContainerLoginPage } from "./StyledLoginPage"
-import {goBack} from '../../../Coordinator'
+import { goBack } from '../../../routers/Coordinator'
 import axios from "axios"
+import { useInput } from "../../../Hooks/useInput"
 
 
 const LoginPage = (props) => {
+
     const navigate = useNavigate()
-    const [email, setEmail] = useState('')
-    const [senha, setSenha] = useState('')
 
-    const onChangeEmail = (event) => {
-        setEmail(event.target.value)
-    }
+    const {form, onChange, clear} = useInput({ name: '', password: '' })
 
-    const onChangeSenha = (event) => {
-        setSenha(event.target.value)
-    }
+    const goLogin = (event) => {
+        event.preventDefault()
 
-    
-    const goLogin = () => {
         const url = `https://us-central1-labenu-apis.cloudfunctions.net/labeX/jonas-meneses-hooks/login`
 
-        const body = {
-            email: email,
-            password: senha
-        }
-
-        axios.post(url,body).then(resp=>{
+        axios.post(url, form).then(resp => {
             console.log(resp.data)
             localStorage.setItem("token", resp.data.token)
-            navigate("/admin/list")
-        }).catch(err=>{
+            navigate("/admin/trips")
+            clear()
+        }).catch(err => {
             console.log(err)
+            alert("email ou senha incorreta")
         })
+        console.log(form)
     }
 
 
@@ -42,19 +34,23 @@ const LoginPage = (props) => {
 
             <main>
                 LoginPage
-                <input placeholder="email"
-                    onChange={onChangeEmail}
-                    value={email}
-                />
-                <input placeholder="Passeword"
-                    type="password"
-                    onChange={onChangeSenha}
-                    value={senha}
-                />
-                <div className="buttons">
-                    <button onClick={()=>goBack(navigate)}>voltar</button>
-                    <button onClick={goLogin}>Entrar</button>
-                </div>
+                <form onSubmit={goLogin}>
+                    <input placeholder="email"
+                        name="email"
+                        onChange={onChange}
+                        value={form.email}
+                    />
+                    <input placeholder="Password"
+                        name="password"
+                        type="password"
+                        onChange={onChange}
+                        value={form.password}
+                    />
+                    <div className="buttons">
+                        <button onClick={() => goBack(navigate)}>voltar</button>
+                        <button type="">Entrar</button>
+                    </div>
+                </form>
             </main>
 
         </ContainerLoginPage>

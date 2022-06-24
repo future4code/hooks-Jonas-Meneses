@@ -6,12 +6,12 @@ const HomePage = () => {
     const navegate = useNavigate()
 
     const goToTrips = () => {
-        navegate("/trips/list")
+        navegate("trips")
     }
 
     const goToAdmin = () => {
         const token = localStorage.getItem('token')
-        token ?  navegate("/admin/listtrips") : navegate("/loginPage")
+        token ?  navegate("admin/trips") : navegate("/loginPage")
         
     }
 

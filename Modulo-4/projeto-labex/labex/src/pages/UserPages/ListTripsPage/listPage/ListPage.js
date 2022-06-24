@@ -6,7 +6,7 @@ const ListPage = () => {
     const navigate = useNavigate()
 
     const goToApplication = () => {
-        navigate('/trips/application')
+        navigate('/applicationtrip')
     }
 
     const goBack = () => {

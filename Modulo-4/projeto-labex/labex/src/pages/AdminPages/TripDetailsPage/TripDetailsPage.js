@@ -1,10 +1,15 @@
-import {useProtected} from '../../../customHooks/useProtected'
+import {useProtected} from '../../../Hooks/useProtected'
+import { useParams } from 'react-router-dom'
+import CardDetails from './CardDetails'
 
-const TripDetailsPage = () => {
+const TripDetailsPage = (props) => {
     useProtected()
+    const params = useParams()
+    const idPage = params.idviagem
+
     return (
         <>
-            TripDetailsPage
+            <CardDetails id={idPage} />
         </>
     )
 }

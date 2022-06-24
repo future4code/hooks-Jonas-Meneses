@@ -1,7 +1,5 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
 import styled from "styled-components";
-import {useGetTrips} from "../../../../customHooks/useGetTrips"
+import {useGetTrips} from "../../../../Hooks/useGetTrips"
 
 const ContainerTrip = styled.div`
     border:1px solid black;
