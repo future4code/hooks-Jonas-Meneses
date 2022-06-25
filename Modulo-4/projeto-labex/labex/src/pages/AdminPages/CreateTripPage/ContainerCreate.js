@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
- export const ContainerApplication = styled.div`
+export const ContainerCreate = styled.section`
     height: 100vh;
     width: 100vw;
     background-color: #999999;
@@ -49,4 +49,5 @@ import styled from "styled-components";
             }
         }
     }
+
 `

@@ -14,17 +14,21 @@ const TripListAdmin = () => {
         navigate('/createtripPage')
     }
 
-    const logout = () =>{
+    const logout = () => {
         localStorage.removeItem('token')
         navigate("/")
     }
     useEffect(() => { }, [])
     return (
         <ContainerTripListAdmin >
-            Olá deu certo
-            <button onClick={() => { goBack(navigate) }}>voltar</button>
-            <button onClick={goCreate}>criar viagem</button>
-            <button onClick={logout}>sair</button>
+            <h1> Olá deu certo </h1>
+
+            <div className='containerButton'>
+                <button onClick={() => { goBack(navigate) }}>voltar</button>
+                <button onClick={goCreate}>criar viagem</button>
+                <button onClick={logout}>sair</button>
+            </div>
+
             <section className='renderedList'>
                 <TripList />
             </section>

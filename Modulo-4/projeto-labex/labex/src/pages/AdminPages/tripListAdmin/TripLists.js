@@ -5,16 +5,22 @@ import axios from 'axios'
 
 const ContainerTripList = styled.div`
 
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+
     .trip{
         border: 1px solid black;
         margin: 5px;
-        width: 500px;
-        height: 250px;
+        width: 350px;
+        height: 80px;
+        padding: 10px;
+
+        text-align: left;
     }
 
 `
 
-const TripList = () =>{
+const TripList = () => {
     const navigate = useNavigate()
 
     const tripList = useGetTrips()
@@ -25,38 +31,34 @@ const TripList = () =>{
         }
     }
 
-    const deleteTrip = (id) =>{
+    const deleteTrip = (id) => {
         const url = `https://us-central1-labenu-apis.cloudfunctions.net/labeX/jonas-meneses-hooks/trips/${id}`
 
         axios.delete(url, headers)
-        .then(reso=>{
-            alert("mensagem apagada")
-            console.log(reso)
-            
-        })
-        .catch(err=>{
-            alert("deu ruim")
-            console.log(err)
-        })
+            .then(resp => {
+                alert("viagem apagada")
+                console.log(resp)
+
+            })
+            .catch(err => {
+                alert("Atualiza e tenta de novo")
+                console.log(err)
+            })
 
     }
 
-    const TripDetails = (id) =>{
+    const TripDetails = (id) => {
         navigate(`/admin/trip/${id}`)
     }
 
-    return(
+    return (
         <ContainerTripList>
-            {tripList.map(trip =>{
-                return(
+            {tripList.map(trip => {
+                return (
                     <div className='trip'>
-                    <p> <span>Nome:</span> {trip.name}</p>
-                    <p><span>Planeta:</span> {trip.planet}</p>
-                    <p><span>Descrição:</span> {trip.description} </p>
-                    <p><span>Data:</span> {trip.date} </p>
-                    <p><span>Duração:</span> {trip.durationInDays} dias </p>
-                    <button onClick={()=>deleteTrip(trip.id)}>apagar</button>
-                    <button onClick={()=>TripDetails(trip.id)}>Detalhes</button>
+                        <p> <span>Nome:</span> {trip.name}</p>
+                        <button onClick={() => deleteTrip(trip.id)}>apagar</button>
+                        <button onClick={() => TripDetails(trip.id)}>Detalhes</button>
                     </div>
                 )
             })}

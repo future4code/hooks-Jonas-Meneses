@@ -3,6 +3,7 @@ import { goBack } from '../../../routers/Coordinator'
 import { useNavigate } from 'react-router-dom'
 import { useInput } from '../../../Hooks/useInput'
 import axios from 'axios'
+import { ContainerCreate } from './ContainerCreate'
 
 const CreatetripPage = () => {
     useProtected()
@@ -24,20 +25,20 @@ const CreatetripPage = () => {
 
     const send = (event) => {
         event.preventDefault()
- 
+
         const url = "https://us-central1-labenu-apis.cloudfunctions.net/labeX/jonas-meneses-hooks/trips"
         axios.post(url, form, headers)
-        .then(resp=>{
-            console.log(resp.data)
-        })
-        .catch(err=>{
-            console.log(err)
-        })
+            .then(resp => {
+                console.log(resp.data)
+            })
+            .catch(err => {
+                console.log(err)
+            })
     }
     console.log(headers)
     return (
-        <>
-            <h1> CreatetripPage </h1>
+        <ContainerCreate ContainerCreate >
+            <h1>Criar viagem </h1>
             <form onSubmit={send} >
                 <input
                     placeholder='Nome da Viagem'
@@ -78,11 +79,14 @@ const CreatetripPage = () => {
                     value={form.durationInDays}
                     required
                 />
-                <button>Enviar</button>
-            </form>
-            <button onClick={() => { goBack(navigate) }}>voltar</button>
 
-        </>
+                <div className='conatinerButton'>
+                    <button>Enviar</button>
+                    <button onClick={() => { goBack(navigate) }}>voltar</button>
+                </div>
+            </form>
+
+        </ContainerCreate>
     )
 }
 

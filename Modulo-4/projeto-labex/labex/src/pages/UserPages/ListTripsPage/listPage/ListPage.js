@@ -15,7 +15,7 @@ const ListPage = () => {
 
     return (
         <ContainerTripList>
-            Lista de Viagens
+           <h1> Lista de Viagens</h1>
             <div className="containerButton">
                 <button onClick={goToApplication}> Inscrever</button>
                 <button onClick={goBack}>Votar</button>

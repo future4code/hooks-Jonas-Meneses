@@ -22,7 +22,7 @@ const Application = () => {
 
     const [viagem, setViagem] = useState('')
 
-    const onChangeViagem = (event) =>{
+    const onChangeViagem = (event) => {
         setViagem(event.target.value)
     }
 
@@ -53,13 +53,13 @@ const Application = () => {
     console.log(form)
     return (
         <ContainerApplication>
-            Formulario de cadastro
+            <h1> Formulario de cadastro </h1>
             <section>
                 <form onSubmit={onClickApplication}>
                     <select
                         onChange={onChangeViagem}
                         value={viagem}
-                       
+
                     >
                         <option value='' disabled >Escolha uma viagem</option>
                         {getTrips.map(opt => {
@@ -116,9 +116,10 @@ const Application = () => {
                             )
                         })}
                     </select>
-
-                    <button>Aplicar-se</button>
-                    <button onClick={() => goBack(navigate)}>Votar</button>
+                    <div className="conatinerButton">
+                        <button>Aplicar-se</button>
+                        <button onClick={() => goBack(navigate)}>Votar</button>
+                    </div>
                 </form>
             </section>
 
