@@ -6,3 +6,5 @@ Não consegui Deixar do jeito q eu queria, o trabalho ta consumindo muito meu te
 
 Fiz alguns custom hooks, mas faltou o um hooks para fazer as requisições do axios e outros. 
 
+Tbm não está responsivo ainda.
+
