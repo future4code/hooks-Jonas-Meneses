@@ -3,10 +3,7 @@ import { useEffect, useState } from "react"
 import { goBack } from "../../../routers/Coordinator"
 import { useNavigate } from "react-router-dom"
 import styled from "styled-components"
-
-const ConatainerDetails = styled.main`
-
-`
+import { ConatainerDetails } from "./styledCardDetails"
 
 
 const CardDetails = (props) => {
@@ -35,8 +32,8 @@ const CardDetails = (props) => {
             })
     }
 
-        const candidates = trip.candidates
-        const aprovados = trip.approved
+    const candidates = trip.candidates
+    const aprovados = trip.approved
 
     const decide = (id, decisao) => {
         const body = {
@@ -57,14 +54,15 @@ const CardDetails = (props) => {
             })
     }
 
-    useEffect(()=>{
+    useEffect(() => {
 
         getTripDetails()
 
-    },[])
+    }, [])
     return (
         <> {trip ?
             <ConatainerDetails>
+                <h1>Detalhes da Viagem</h1>
                 < button onClick={() => goBack(navigate)}>voltar</button>
                 <h1> {trip.name}</h1>
                 <p> <span>Nome:</span> {trip.name}</p>
@@ -75,20 +73,21 @@ const CardDetails = (props) => {
 
                 <h1> Canditos pendentes</h1>
 
-                {candidates && candidates.map(candidates => {
-                    return (
-                        <div>
-                            <p>nome: {candidates.name} </p>
-                            <p> idade: {candidates.age} </p>
-                            <p> país: {candidates.country} </p>
-                            <p> profissão: {candidates.profession}</p>
-                            <p> texto: {candidates.applicationText} </p>
-                            <button onClick={() => decide(candidates.id, true)}>aprovar</button>
-                            <button onClick={() => decide(candidates.id, false)} >reprovar</button>
-                            <hr />
-                        </div>
-                    )
-                })}
+                <section>
+                    {candidates && candidates.map(candidates => {
+                        return (
+                            <div  className="pendentes">
+                                <p> <span>nome:</span> {candidates.name} </p>
+                                <p> <span>idade:</span> {candidates.age} </p>
+                                <p> <span>país:</span> {candidates.country} </p>
+                                <p> <span>profissão:</span> {candidates.profession}</p>
+                                <p> <span>texto:</span> {candidates.applicationText} </p>
+                                <button onClick={() => decide(candidates.id, true)}>aprovar</button>
+                                <button onClick={() => decide(candidates.id, false)} >reprovar</button>
+                            </div>
+                        )
+                    })}
+                </section>
 
                 <h1> Canditos aprovados</h1>
                 {aprovados && aprovados.map(candidato => {

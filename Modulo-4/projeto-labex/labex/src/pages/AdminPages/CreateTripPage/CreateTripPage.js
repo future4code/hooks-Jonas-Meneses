@@ -29,10 +29,11 @@ const CreatetripPage = () => {
         const url = "https://us-central1-labenu-apis.cloudfunctions.net/labeX/jonas-meneses-hooks/trips"
         axios.post(url, form, headers)
             .then(resp => {
-                console.log(resp.data)
+                alert("Viagem Criada com sucesso")
+                clear()
             })
             .catch(err => {
-                console.log(err)
+                alert("Opss! Algo de Arrado não está certo.")
             })
     }
     console.log(headers)
@@ -82,8 +83,8 @@ const CreatetripPage = () => {
 
                 <div className='conatinerButton'>
                     <button>Enviar</button>
-                    <button onClick={() => { goBack(navigate) }}>voltar</button>
                 </div>
+                    <button onClick={() => { goBack(navigate) }}>voltar</button>
             </form>
 
         </ContainerCreate>

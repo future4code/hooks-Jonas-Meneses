@@ -10,7 +10,6 @@ export const ContainerTripListAdmin = styled.div`
 
     .containerButton{
 
-
         button{
             margin: 10px;
             padding: 8px;
@@ -24,6 +23,11 @@ export const ContainerTripListAdmin = styled.div`
 
             cursor: pointer;
             box-shadow: 2px 2px 5px #00000080;
+
+            &:hover{
+                background-color:  #aa55ff;
+
+            }
         }
     }
 

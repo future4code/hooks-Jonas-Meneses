@@ -12,12 +12,24 @@ export const ContainerHomePage = styled.div`
     justify-content: center;
     align-items: center;
     background-image: url(${espace}) ;
-    background-position: center;
-    background-size: cover;
+    background-position: 50% 0% ;
+    background-size: auto;
     background-repeat: no-repeat;
-    background-blend-mode: color-burn;
+    animation: viagem 60s ease-in-out infinite ;
+   
     
-    
+    @keyframes viagem {
+        0%{
+            background-position: 50% 0%;
+        }
+       
+        50%{
+            background-position: 50% 100%;
+        }
+        100%{
+            background-position: 50% 0%;
+        }
+    } 
 
     .container{
 
