@@ -11,20 +11,20 @@ enum GENERO {
 type result = {
     nome: string,
     anoLancamento: number,
-    genero: any
+    genero: GENERO
 }
 
 type Pontuacao = {
     nome: string,
     anoLancamento: number,
-    genero: any
+    genero: GENERO
     pontuacao: number
 }
 
 let result3: result | Pontuacao = {
     nome: process.argv[2],
     anoLancamento: Number(process.argv[3]),
-    genero: process.argv[4]
+    genero: GENERO.ACAO
     
 }
 
