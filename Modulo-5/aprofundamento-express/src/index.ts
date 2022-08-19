@@ -54,9 +54,13 @@ app.get("/ping", (req, res) => {
     res.send("pong").status(200)
 })
 
+//=========================================
+
 app.get("/afazeres", (req, res) => {
     res.send(afazeres)
 })
+
+//=========================================
 
 app.get("/afazeres/:status/", (req, res) => {
 
@@ -82,7 +86,7 @@ app.get("/afazeres/:status/", (req, res) => {
 
 })
 
-
+//=========================================
 app.post("/createAfazer", (req, res) => {
     const { title, userId } = req.body
 
@@ -99,7 +103,7 @@ app.post("/createAfazer", (req, res) => {
         }
 
         afazeres.push(newTarefa)
-        res.send("tarefa adicionada").status(201)
+        res.send(afazeres).status(201)
 
     } catch (error: any) {
         res.send(error.message).status(400)
@@ -107,6 +111,7 @@ app.post("/createAfazer", (req, res) => {
 
 })
 
+//=========================================
 
 app.put("/edit/tarefa/:idTarefa", (req, res) => {
     const { idTarefa } = req.query
@@ -139,6 +144,8 @@ app.put("/edit/tarefa/:idTarefa", (req, res) => {
     }
 })
 
+//=========================================
+
 app.delete("/delete/:idTarefa", (req, res)=>{
 
     const { idTarefa } = req.query
@@ -165,6 +172,8 @@ app.delete("/delete/:idTarefa", (req, res)=>{
     }
 
 })
+
+//=========================================
 
 app.get("/afazeres/user/:idUser", (req, res) => {
 
@@ -194,5 +203,6 @@ app.get("/afazeres/user/:idUser", (req, res) => {
 
 })
 
+//=========================================
 
 app.listen(3003, () => console.log("rodando na porta 3003"))
