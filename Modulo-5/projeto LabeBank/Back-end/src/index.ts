@@ -1,92 +1,49 @@
 import cors from "cors"
-import express from "express"
+import { Request, Response, Express } from "express" 
+import  express  from "express"
+import { Cadastro, Transferencia, Deposito, dataClient } from "./dataUsers"
+import { validaIdade, verificaCpf } from "./funcoes/funtions"
 
 const app = express()
 app.use(express.json())
 app.use(cors())
 
 
-type tranferencia = {
-    name: string,
-    cpf: string,
-    valor: number
-    date: string
-}
-
-type cadastro = {
-    name: string;
-    cpf: string
-    birthDate: string
-    debitos: number[],
-    transferencias: any | tranferencia[],
-    depositos: number[],
-    saldo: number
-}
-
-
-
-
-let dataClient: any | cadastro[] = [{
-    name: "",
-    cpf: 0,
-    birthDate: "",
-    debitos: [],
-    transferencias: [],
-    depositos: [],
-    saldo: 0
-},
-{
-    "name": "jonas",
-    "cpf": "04359088396",
-    "birthDate": "04/08/1991",
-    "debitos": [],
-    "transferencias": [],
-    "depositos": [],
-    "saldo": 0
-}]
-
-
 // ======================= PEGA TODOS USURARIOS
 
-app.get("/alluser", (req, res) => {
+app.get("/alluser", (req: Request, res: Response) => {
     res.send(dataClient)
 })
 
 //========================= CRIAR CONTA =======================
 
-app.post("/create/user", (req, res) => {
+app.post("/create/user", (req: Request, res: Response) => {
 
     const { name, cpf, birthDate } = req.body
+    const idade: boolean = validaIdade(birthDate) 
 
     try {
 
-        if (name && cpf && birthDate) {
+        if (!name || !cpf || !birthDate ) throw new Error("Body incompleto")
 
-            const verifCpf = dataClient.find((client: cadastro) => {
-                return client.cpf === cpf
-            })
+        if(idade) throw new Error("Usuario menor de 18 anos")
 
-            console.log(cpf, verifCpf)
+        const verifCpf: Cadastro | undefined = verificaCpf(cpf)
 
-            if (verifCpf) throw new Error("Cliente já tem cadastro")
+        if (verifCpf) throw new Error("Cliente já tem cadastro")
 
-            const objetoCliente = {
-                name,
-                cpf,
-                birthDate,
-                debitos: [],
-                transferencias: [],
-                depositos: [],
-                saldo: 0
-            }
-
-            dataClient.push(objetoCliente)
-
-
-            // fim do if
-        } else {
-            throw new Error("Body incompleto")
+        const objetoCliente = {
+            name,
+            cpf,
+            birthDate,
+            debitos: [],
+            transferencias: [],
+            depositos: [],
+            saldo: 0
         }
+
+        dataClient.push(objetoCliente)
+
         res.send(dataClient)
     } catch (error: any) {
         res.send(error.message)
@@ -97,16 +54,12 @@ app.post("/create/user", (req, res) => {
 
 // ======================== SALDO ===========================
 
-app.get("/saldoUser/:cpf", (req, res) => {
-    const { cpf } = req.query
+app.get("/saldoUser/:cpf", (req: Request, res: Response) => {
+    const { cpf } = req.params
 
     try {
 
-        const getCpf = dataClient.find((client: cadastro) => {
-            console.log(client.cpf)
-            return client.cpf === cpf
-
-        })
+        const getCpf: Cadastro | undefined = verificaCpf(Number(cpf))
 
         if (!getCpf) throw new Error("Cliente não encontrado")
 
@@ -125,41 +78,36 @@ app.get("/saldoUser/:cpf", (req, res) => {
 
 // ========================= tranferencia ==========================
 
-//{name, cpf, valor, date }
 
-app.put("/tranferencia/:cpfUserReceive/:nameUserReceive", (req, res) => {
+app.put("/tranferencia/:cpfUserReceive/:nameUserReceive", (req: Request, res: Response) => {
+
     const { name, cpf, valor } = req.body
-    const { cpfUserReceive, nameUserReceive } = req.query
+    const { cpfUserReceive, nameUserReceive } = req.params
 
     try {
 
-        const getCpf = dataClient.find((client: cadastro) => {
-            return client.cpf === cpfUserReceive
+        let index: number = 0
+
+        const getCpf = dataClient.find((client: Cadastro, i: number) => {
+            
+            if(client.cpf  === cpfUserReceive ) index = i;
+
+            return client.cpf === (cpfUserReceive);
         })
 
-        if (!getCpf) throw new Error("Cliente não encontrado")
+        if (!getCpf) throw new Error("Cliente não encontrado");
 
         if (getCpf.name !== nameUserReceive) throw new Error("Nome do CLiente não confere com o do cpf")
 
-        const objTranfer = {
+        const objTranfer: Transferencia = {
             name,
             cpf,
             valor,
             date: new Date().toLocaleString()
         }
 
-
-        dataClient = dataClient.map((client: cadastro) => {
-            if (client.cpf === getCpf.cpf) {
-                return ({
-                    ...client,
-                    transferencias: [...client.transferencias, objTranfer]
-                }
-                )
-            } else {
-                return client
-            }
-        })
+        dataClient[index].transferencias.push(objTranfer)
+        dataClient[index].saldo += valor
 
         res.send(dataClient)
 
@@ -169,8 +117,49 @@ app.put("/tranferencia/:cpfUserReceive/:nameUserReceive", (req, res) => {
 
     }
 
+})
+
+
+// ================== add saldo ==================
+
+app.put("/adicionarsaldo/user/:nameuser/:cpfuser", (req: Request, res: Response) =>{
+    const {nameuser, cpfuser} = req.params
+    const {valor} = req.body
+
+    try {
+        
+        if(!nameuser || !cpfuser) throw new Error("nome e cpf obrigatorio")
+        if(!valor) throw new Error(" valor do deposito obrigatorio ",)
+
+        let index: number  = 0
+
+        const objetoCliente: Cadastro | undefined = dataClient.find((client: Cadastro, i : number) =>{
+            if(client.cpf === cpfuser) index = i
+            return client.cpf = cpfuser
+        })
+
+        if(!objetoCliente) throw new Error("Usuario não encontrado")
+
+        const objDeposito: Deposito = {
+            valor,
+            data: new Date().toLocaleString()
+        }
+
+        dataClient[index].depositos.push(objDeposito)
+        dataClient[index].saldo += Number(valor)
+
+
+        res.send(dataClient)
+
+
+
+    } catch (error: any) {
+        res.send(error.message)
+    }
 
 })
+
+
 
 //=========================== LISTEN =======================
 app.listen(3003, () => {
