@@ -1,5 +1,5 @@
 import { dataClient } from "../dataUsers"
-import { Cadastro } from "../dataUsers"
+import { User } from "../dataUsers"
 
 
 export const validaIdade = (data: string): boolean =>{
@@ -16,9 +16,9 @@ export const validaIdade = (data: string): boolean =>{
     
 }
 
-export const verificaCpf = (cpf : number) : Cadastro | undefined =>{
+export const verificaCpf = (cpf : number) : User | undefined =>{
     
-    const verifCpf: Cadastro | undefined = dataClient.find((client) => {
+    const verifCpf: User | undefined = dataClient.find((client) => {
         return Number(client.cpf) === cpf
     })
 
