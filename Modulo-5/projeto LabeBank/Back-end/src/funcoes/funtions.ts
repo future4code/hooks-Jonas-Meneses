@@ -16,10 +16,10 @@ export const validaIdade = (data: string): boolean =>{
     
 }
 
-export const verificaCpf = (cpf : number) : User | undefined =>{
+export const verificaCpf = (cpf : string) : User | undefined =>{
     
     const verifCpf: User | undefined = dataClient.find((client) => {
-        return Number(client.cpf) === cpf
+        return client.cpf === cpf
     })
 
     return verifCpf

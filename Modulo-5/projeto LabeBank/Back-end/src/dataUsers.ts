@@ -7,33 +7,33 @@ export enum    TIPO {
 export enum OPERACAO {
     TRANSFERSENT =  "Transferencia enviada",
     TRANSFERRECEIVED = "Transferncia recebida",
-    DEPOSITO = "Deposito de saldo",
+    DEPOSIT = "Deposito de saldo",
     PAY = "pagamento de conta"
 }
 
 export type Transferencia = {
     name: string,
     cpf: string,
-    valor: number,
+    value: number,
     type: TIPO,
     date: string,
-    operacao:OPERACAO,
-    detalhe: string
+    operation:OPERACAO,
+    description: string
 }
 
 export  type Deposito = {
-    data: string,
-    valor: number
+    date: string,
+    value: number
     type: TIPO,
-    operacao: OPERACAO
+    operation: OPERACAO
 }
 
 export type Pay = {
     description: string
-    valor: number
+    value: number
     date: string
     type: TIPO
-    operacao: OPERACAO
+    operation: OPERACAO
 
 }
 
@@ -41,17 +41,26 @@ export type User = {
     name: string;
     cpf: string
     birthDate: string
-    movimentacoes: Deposito[] & Transferencia[] & Pay [],
-    saldo: number
+    accountMovement: Deposito[] & Transferencia[] & Pay [],
+    balance: number
 }
 
 
 
 export let dataClient: User[] = [
-{
-    "name": "jonas",
-    "cpf": "04359088396",
-    "birthDate": "04/08/1991",
-    "movimentacoes": [],
-    "saldo": 0
-}]
+    {
+        "name": "Astrodev",
+        "cpf": "12345678996",
+        "birthDate": "04/08/2000",
+        "accountMovement": [],
+        "balance": 0
+    },
+    {
+        "name": "Jonas",
+        "cpf": "12345678986",
+        "birthDate": "04/08/2000",
+        "accountMovement": [],
+        "balance": 0
+    }
+    
+]

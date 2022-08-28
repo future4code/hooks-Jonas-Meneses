@@ -15,16 +15,20 @@ type Transferir = {
     date: string
 }
 
+let statusCode = 400
+
 
 // ======================= PEGA TODOS USURARIOS
 
 app.get("/alluser", (req: Request, res: Response) => {
-    res.send(dataClient)
+    res.send(dataClient).status(200)
 })
 
 //========================= CRIAR CONTA =======================
 
 app.post("/create/user", (req: Request, res: Response) => {
+
+
 
     const { name, cpf, birthDate } = req.body
     const idade: boolean = validaIdade(birthDate)
@@ -43,15 +47,15 @@ app.post("/create/user", (req: Request, res: Response) => {
             name,
             cpf,
             birthDate,
-            movimentacoes: [],
-            saldo: 0
+            accountMovement: [],
+            balance: 0
         }
 
         dataClient.push(objetoCliente)
 
-        res.send(dataClient)
+        res.send(dataClient).status(201)
     } catch (error: any) {
-        res.send(error.message)
+        res.send(error.message).status(400)
     }
 
 })
@@ -64,24 +68,30 @@ app.get("/saldoUser/:cpf", (req: Request, res: Response) => {
 
     try {
 
-        const getCpf: User | undefined = verificaCpf(Number(cpf))
+        const getCpf: User | undefined = verificaCpf(cpf)
 
         if (!getCpf) throw new Error("Cliente não encontrado")
 
+        
+
         res.send({
-            saldo: getCpf.saldo.toString()
-        })
+            saldo: getCpf.balance.toString(),
+            accountMovement: getCpf.accountMovement
+        }).status(200)
 
     } catch (error: any) {
 
-        res.send(error.message)
+        res.send(error.message).status(400)
 
     }
 
 })
 
 
+
+//-----------------------------------------------------------------------------
 // ========================= tranferencia interna ==========================
+//-----------------------------------------------------------------------------
 
 
 app.put("/tranferencia/:cpfUserReceive/:nameUserReceive", (req: Request, res: Response) => {
@@ -96,13 +106,13 @@ app.put("/tranferencia/:cpfUserReceive/:nameUserReceive", (req: Request, res: Re
         let saldoUserSend: number = 0
 
 
-// verificações de usuarios 
+        // verificações de usuarios 
 
         const getCpfReceive = dataClient.find((client: User, i: number) => {
 
-            if (client.cpf === cpfUserReceive) indexreceive = i;
+            if (client.cpf === cpfUserReceive) indexreceive = i
 
-            return client.cpf === (cpfUserReceive);
+            return client.cpf === cpfUserReceive;
         })
 
         if (!getCpfReceive) throw new Error("Cliente não encontrado");
@@ -115,62 +125,80 @@ app.put("/tranferencia/:cpfUserReceive/:nameUserReceive", (req: Request, res: Re
 
             if (client.cpf === cpf) {
                 indexsend = i;
-                saldoUserSend = client.saldo
+                saldoUserSend = client.balance
             }
 
-            return client.cpf === cpf;
+            return client.cpf === cpf
         })
 
-        
-        if(!getCpfsend) throw new Error("Problemas no User que envia ")
-        if((saldoUserSend - valor) < 0) throw new Error("Saldo insuficiente")
+        if (!getCpfsend) throw new Error("Problemas no User que envia ")
+        if ((saldoUserSend - valor) < 0) throw new Error("Saldo insuficiente")
 
         //dados do usuario que envia
+
+        const date: string = new Date().toLocaleString()
 
         const objTranferUserSend: Transferencia = {
             name: nameUserReceive,
             cpf: cpfUserReceive,
-            valor,
+            value: valor,
             type: TIPO.DEBITO,
-            date: new Date().toLocaleString(),
-            operacao: OPERACAO.TRANSFERSENT,
-            detalhe 
+            date,
+            operation: OPERACAO.TRANSFERSENT,
+            description: detalhe
         }
- 
-        dataClient[indexsend].movimentacoes.push(objTranferUserSend)
-        dataClient[indexsend].saldo -= valor
 
-        
+        dataClient[indexsend].accountMovement.push(objTranferUserSend)
+        dataClient[indexsend].balance -= valor
+
+
 
         //dados do usurio q vai receber
-        
+
 
         const objTranferUserReceiving: Transferencia = {
             name,
             cpf,
-            valor,
+            value: valor,
             type: TIPO.CREDITO,
-            date: new Date().toLocaleString(),
-            operacao: OPERACAO.TRANSFERRECEIVED,
-            detalhe 
+            date,
+            operation: OPERACAO.TRANSFERRECEIVED,
+            description: detalhe
         }
 
-        dataClient[indexreceive].movimentacoes.push(objTranferUserReceiving)
-        dataClient[indexreceive].saldo += valor
+        dataClient[indexreceive].accountMovement.push(objTranferUserReceiving)
+        dataClient[indexreceive].balance += valor
 
-        
-        res.send(dataClient)
+        const comprovante: {} = {
+            userSend: {
+                name: getCpfsend.name,
+                cpf: getCpfsend.cpf
+            },
+            userReceive: {
+                name: getCpfReceive.name,
+                cpf: getCpfReceive.cpf
+            },
+            valor,
+            date,
+            description: detalhe
+
+        }
+        res.send(comprovante).status(200)
 
     } catch (error: any) {
 
-        res.send(error.message)
+        res.send(error.message).status(400)
 
     }
 
 })
 
 
+
+//-----------------------------------------------------------------------------
 // ================== add saldo ==================
+//-----------------------------------------------------------------------------
+
 
 app.put("/adicionarsaldo/user/:nameuser/:cpfuser", (req: Request, res: Response) => {
     const { nameuser, cpfuser } = req.params
@@ -185,75 +213,97 @@ app.put("/adicionarsaldo/user/:nameuser/:cpfuser", (req: Request, res: Response)
 
         const objetoCliente: User | undefined = dataClient.find((client: User, i: number) => {
             if (client.cpf === cpfuser) index = i
-            return client.cpf = cpfuser
+            return client.cpf === cpfuser
         })
+
 
         if (!objetoCliente) throw new Error("Usuario não encontrado")
 
+        let date: string = new Date().toLocaleString()
+
         const objDeposito: Deposito = {
-            valor,
-            data: new Date().toLocaleString(),
+            value: valor,
+            date,
             type: TIPO.CREDITO,
-            operacao: OPERACAO.DEPOSITO
+            operation: OPERACAO.DEPOSIT
         }
 
-        dataClient[index].movimentacoes.push(objDeposito)
-        dataClient[index].saldo += Number(valor)
+        dataClient[index].accountMovement.push(objDeposito)
+        dataClient[index].balance += Number(valor)
 
+        const comprovante: {} = {
+            name: objetoCliente.name,
+            cpf: objetoCliente.cpf,
+            valor,
+            date,
+        }
 
-        res.send(dataClient)
+        res.send(comprovante).status(200)
 
 
 
     } catch (error: any) {
-        res.send(error.message)
+        res.send(error.message).status(400)
     }
 
 })
 
 // ================= PAGEMENTO DE CONTAS ==================
 
-app.put("/user/:cpfuser/pay", (req, res)=>{
-    let {description, valor, date} = req.body
-    const {cpfuser} = req.params
+app.put("/user/:cpfuser/pay", (req: Request, res: Response) => {
+    let { description, valor, date } = req.body
+    const { cpfuser } = req.params
 
     try {
 
-        if(cpfuser === ":cpfuser" || !cpfuser ) throw new Error("Passe o cpf no parametro")
+        let saldo = 0
 
-        if(!description || !valor) throw new Error("Passe descrição e valor no body")
+        if (cpfuser === ":cpfuser" || !cpfuser) throw new Error("Passe o cpf no parametro")
+
+        if (!description || !valor) throw new Error("Passe descrição e valor no body")
 
         let index: number = 0
 
-        const userCpf = dataClient.find((user: User, i:number)=>{
-            if(user.cpf === cpfuser) index = i
+        const userCpf = dataClient.find((user: User, i: number) => {
+            if (user.cpf === cpfuser) {
+                index = i
+                saldo = user.balance
+            }
             return user.cpf === cpfuser
         })
 
-        if(!userCpf) throw new Error("Usuario não encontrado")
-        if(!date) {
+        if (!userCpf) throw new Error("Usuario não encontrado")
+        if ((saldo - valor) < 0) throw new Error("Saldo insuficiente")
+        if (!date) {
             date = new Date().toLocaleDateString()
         }
 
         const newPay: Pay = {
             description,
-            valor,
+            value: valor,
             date,
             type: TIPO.DEBITO,
-            operacao: OPERACAO.PAY
+            operation: OPERACAO.PAY
         }
 
-        console.log(new Date().toLocaleDateString(), date)
 
-        dataClient[index].movimentacoes.push(newPay)
-        if(date == new Date().toLocaleDateString()){
-            dataClient[index].saldo -= valor
+        dataClient[index].accountMovement.push(newPay)
+        if (date == new Date().toLocaleDateString()) {
+            dataClient[index].balance -= valor
         }
 
-        res.send(dataClient)
-        
-    }catch (error: any) {
-        res.send(error.message)
+        const comprovante: {} = {
+            name: userCpf.name,
+            cpf: userCpf.cpf,
+            description,
+            valor,
+            date,
+        }
+
+        res.send(comprovante).status(200)
+
+    } catch (error: any) {
+        res.send(error.message).status(400)
     }
 })
 
