@@ -79,10 +79,13 @@ app.get("/user/:id", async (req: Request, res: Response) => {
 })
 
 
-//================================ GET USERS ===============================
-let errorCode = 400
+//================================ CREATE TASK ===============================
+
 
 app.post("/task", async (req: Request, res: Response) => {
+
+    let errorCode = 400
+
     try {
         const { title, description, limitDate, creatorUserId } = req.body
 
@@ -90,20 +93,64 @@ app.post("/task", async (req: Request, res: Response) => {
 
         const user = usersCheck(creatorUserId)
 
-        if((await user).length < 1)  throw new Error("usuario não encontrado")
+        if ((await user).length < 1) throw new Error("usuario não encontrado")
+
+        const [dd, mm, yyyy] = limitDate.split("/")
+        if (!dd || !mm || !yyyy) throw new Error("data invalida")
+
+        const formatedDate = `${yyyy}/${mm}/${dd}`
+
+        const dataAtual = new Date().toLocaleDateString()
+
+        if (limitDate < dataAtual) throw new Error("data invalida, a data tem que ser igual ou maior que a de hoje")
 
         await connection.raw(`
         INSERT INTO Tasks(title, description, limitDate, creatorUserId )
-        VALUES ("${title}", "${description}", "${limitDate}", "${creatorUserId}");
+        VALUES ("${title}", "${description}", "${formatedDate}", "${creatorUserId}");
         `)
 
         res.send("Tarefa criada com sucesso")
 
-    } catch (error:any) {
+    } catch (error: any) {
         res.status(errorCode).send(error.message)
     }
 })
 
+//============================ Get all tasks ==============================
+app.get("/tasks/all", async (req: Request, res: Response) => {
+
+    let errorCode = 400
+
+    try {
+
+        const result = await connection.raw(`
+        SELECT * FROM Tasks
+    `)
+
+        res.send(result[0]).status(200)
+    } catch (error: any) {
+        res.status(errorCode).send(error.message)
+    }
+
+})
+
+///task/:id
+//============================ Get all tasks ==============================
+app.get("/task/:id", async (req: Request, res: Response) => {
+
+    let errorCode = 400
+
+    try {
+
+        const taskId = req.params.id
+
+        if (!taskId || taskId === ":id") throw new Error("Parametro id obrigatorio")
+
+
+    } catch (error) {
+
+    }
+})
 
 // =*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
 app.listen(3003, () => {
