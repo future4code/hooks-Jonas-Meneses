@@ -127,6 +127,8 @@ app.get("/tasks/all", async (req: Request, res: Response) => {
         SELECT * FROM Tasks
     `)
 
+    if((await result)[0].length === 0) throw new Error("Não há tarefas por aqui")
+
         res.send(result[0]).status(200)
     } catch (error: any) {
         res.status(errorCode).send(error.message)
