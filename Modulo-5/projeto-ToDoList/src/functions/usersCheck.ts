@@ -8,7 +8,7 @@ const usersCheck = async (id:string) => {
             WHERE id = "${id}"
         `)
 
-        const user: UserId[] | undefined[] = result[0]
+        const user: UserId[] | undefined[] = await result[0]
 
         return user
 }
