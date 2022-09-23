@@ -3,15 +3,15 @@ import connection from "../dataBase/connection";
 import { v4 as createId } from 'uuid';
 
 
-const createProduct = async (req: Request, res: Response) =>{
+const createProduct = async (req: Request, res: Response):Promise<void> => {
 
     try {
-        const {name, price, imageUrl} = req.body
+        const { name, price, imageUrl } = req.body
 
-        if(!name || !price || !imageUrl) throw new Error("Os dados do Body estão imconpleto")
+        if (!name || !price || !imageUrl) throw new Error("Os dados do Body estão imconpleto")
 
         const id = createId()
-        
+
 
         await connection.raw(`
             INSERT INTO labecommerce_products (id, name, price, image_url)
