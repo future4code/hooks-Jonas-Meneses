@@ -1,25 +1,25 @@
 import { Request, Response } from "express";
 import connection from "../dataBase/connection";
 
-const getAllProducts = async (req: Request, res: Response) => {
+const getAllProducts = async (req: Request, res: Response): Promise<void> => {
 
     try {
         let order = req.query.order as string
         let search = req.query.search as string
 
         let orderBy = ""
-        
-         if(order && order.toUpperCase() === "ASC"){
+
+        if (order && order.toUpperCase() === "ASC") {
 
             orderBy = `ORDER BY name ${order.toUpperCase()}`
-         }
+        }
 
-         if(order && order.toUpperCase() === "DESC"){
+        if (order && order.toUpperCase() === "DESC") {
 
             orderBy = `ORDER BY name ${order.toUpperCase()}`
-         }
+        }
 
-         if(!search) search = "%"
+        if (!search) search = "%"
 
 
         const result = await connection.raw(`

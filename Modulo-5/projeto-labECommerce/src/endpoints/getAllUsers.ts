@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import connection from "../dataBase/connection";
 
-const getAllUsers = async (req: Request, res: Response) => {
+const getAllUsers = async (req: Request, res: Response): Promise<void> => {
 
     try {
         const result = await connection.raw(`

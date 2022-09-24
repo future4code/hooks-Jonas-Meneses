@@ -3,7 +3,7 @@ import connection from "../dataBase/connection";
 import { v4 as createId } from 'uuid';
 
 
-const createProduct = async (req: Request, res: Response):Promise<void> => {
+const createProduct = async (req: Request, res: Response): Promise<void> => {
 
     try {
         const { name, price, imageUrl } = req.body
@@ -15,7 +15,7 @@ const createProduct = async (req: Request, res: Response):Promise<void> => {
 
         await connection.raw(`
             INSERT INTO labecommerce_products (id, name, price, image_url)
-            VALUES("${id}", "${name}", "${price}", "${imageUrl}")
+            VALUES("${id}", "${name}", ${price}, "${imageUrl}")
         `)
         res.send("produto criado").status(201)
     } catch (error: any) {

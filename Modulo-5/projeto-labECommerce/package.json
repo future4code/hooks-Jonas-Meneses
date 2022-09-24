@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "tsc && node ./build/index"
+    "start": "tsc && node ./build/index",
+    "migrations": "tsc && node ./build/dataBase/migrations.js"
   },
   "keywords": [],
   "author": "",
