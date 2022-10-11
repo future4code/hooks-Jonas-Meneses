@@ -4,6 +4,3 @@
 CREATE TABLE Labecommerce_users(
     id VARCHAR(100) PRIMARY KEY NOT NULL,
     name VARCHAR(150) NOT NULL,
-    
-
-)
