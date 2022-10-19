@@ -1,18 +1,20 @@
+import { Movie } from "../model/Movie";
 import { BaseDatabase } from "./BaseDatabase";
 
 export class MovieDatabase extends BaseDatabase{
 
     private static TABLE_NAME = "LABEFLIX_MOVIE"
 
-    async create ({id, title, description, duration_in_minutes, year_of_release}:any){
-        if(!id || !title || !description || !duration_in_minutes || !year_of_release) throw new Error("Body incompleto")
+    async create (movie: Movie){
         
-        const input = {
-            id,
-            title,
-            description,
-            duration_in_minutes, year_of_release
+        try {
+
+           await MovieDatabase.connection(MovieDatabase.TABLE_NAME).insert(movie)
+
+        } catch (error:any) {
+            throw new Error(error.message)
         }
+        
     }
 
     
