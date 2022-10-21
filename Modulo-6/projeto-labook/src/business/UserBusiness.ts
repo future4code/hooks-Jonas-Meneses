@@ -22,4 +22,15 @@ export class UserBusiness {
         }
     }
 
+    async getAllUsers(){
+        try {
+            const userBD = new UserDatabase()
+            const result = await userBD.getAllUsers()
+
+            return result
+        } catch (error:any) {
+            
+        }
+    }
+
 }

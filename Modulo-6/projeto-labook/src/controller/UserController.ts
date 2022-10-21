@@ -24,5 +24,16 @@ export class UserController {
         }
     }
 
+    async getAllUsers(req: Request, res: Response){
+        try {
+            const userbusiness = new UserBusiness()
+            const result = await userbusiness.getAllUsers()
+
+            res.send({users: result})
+        } catch (error: any) {
+            res.send(error.message || error.sqlMessage)
+            
+        }
+    }
     
 }

@@ -12,6 +12,18 @@ export class UserDatabase extends BaseDatabase {
         }
     }
 
+    async getAllUsers(){
+        try {
+           const result = await BaseDatabase.connection('labook_users')
+            .select()
+            return result
+        } catch (error: any) {
+            throw new Error(error.message || error.sqlMessage)
+
+            
+        }
+    }
+
     async getFriends(id: any) {
 
         try {

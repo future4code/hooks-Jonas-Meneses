@@ -1,12 +1,14 @@
-
 // endpoints User
+###
+GET http://localhost:3003/user 
+
 ###
 POST http://localhost:3003/user/create
 Content-Type: application/json
 
 {
-    "name": "Nino",
-    "email": "nino@gmail.com",
+    "name": "teste",
+    "email": "teste@gmail.com",
     "password": "123456" 
 }
 
@@ -31,7 +33,6 @@ GET http://localhost:3003/post/c652d97c-19f4-4602-9fb0-1d2522d25251
 
 
 // endpoints friends
-
 ###
 // get friends
 GET http://localhost:3003/friends/4db7ba54-5209-4edb-85ba-0de5c4a30523
