@@ -1,0 +1,24 @@
+POST http://localhost:3003/user/create
+Content-Type: application/json
+
+{
+    "name": "teste",
+    "email": "email@email.com",
+    "password": "23432535"
+}
+
+###
+GET http://localhost:3003/user
+
+###
+POST http://localhost:3003/movie/create
+Content-Type: application/json
+
+{
+    "title": "A volta dos que não foram",
+    "description": "Uma aventura alucinante",
+    "duration_in_minutes": 20,
+    "year_of_release": 2023
+}
+
+
