@@ -5,4 +5,3 @@ export const userRouter = express.Router()
 const userController = new UserController()
 
 userRouter.post("/create", userController.create)
-userRouter.get("/friend/:id", userController.getFriends)

@@ -24,20 +24,5 @@ export class UserController {
         }
     }
 
-    public async getFriends (req: Request, res: Response){
-        try {
-            
-            const idUser = req.params.id
     
-            const userBusiness = new UserBusiness()
-            const result = await userBusiness.getFriends(idUser)
-    
-            res.send({friends: result})
-
-        } catch (error:any) {
-            res.send(error.message || error.sqlMessage)
-        }
-        
-
-    }
 }

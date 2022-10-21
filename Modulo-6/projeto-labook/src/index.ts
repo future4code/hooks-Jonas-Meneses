@@ -1,9 +1,11 @@
 import {app} from "./app"
+import { friendsRouter } from "./Routes/friendsRoutes"
 import { postRouter } from "./Routes/postRouter"
 import { userRouter } from "./Routes/userRouter"
    
 app.use("/user", userRouter)
 app.use("/post", postRouter)
+app.use("/friends", friendsRouter)
 
 // **************************** ENDPOINTS ******************************/
 

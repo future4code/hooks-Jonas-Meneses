@@ -22,25 +22,4 @@ export class UserBusiness {
         }
     }
 
-    async getFriends (id:any){
-        
-        try {
-            
-            if(!id) throw new Error("id invalido")
-    
-            const userDB = new UserDatabase()
-            const friands = await userDB.getFriends(id)
-            const result:any = []
-
-            for (const i of friands) {
-                if(i.idFried1 !== id) result.push(i.idFried1)
-                if(i.idFried2 !== id) result.push(i.idFried2)
-            }
-
-            return result
-
-        } catch (error:any) {
-            throw new Error(error.message || error.sqlMessage)
-        }
-    }
 }

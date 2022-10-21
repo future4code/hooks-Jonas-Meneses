@@ -1,8 +1,8 @@
-type post = {
+export interface postDB {
     id: string,
     photo: string,
     description: string,
-    type: POST_TYPES,
+    type: string,
     createdAt: Date,
-    authorId: string
+    author_id: string
  }

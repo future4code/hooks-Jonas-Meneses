@@ -1,9 +1,10 @@
+import { postDB } from "../model/PostDB";
 import { BaseDatabase } from "./BaseDatabase";
 
 export class PostDatabase extends BaseDatabase {
     private static TABLE_NAME = " "
 
-    async create(post: any) {
+    async create(post: postDB) {
 
         try {
 
@@ -15,7 +16,7 @@ export class PostDatabase extends BaseDatabase {
         }
     }
 
-    async getById(id: any) {
+    async getById(id: string) {
 
         try {
 

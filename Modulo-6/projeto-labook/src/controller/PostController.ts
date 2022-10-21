@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { PostBusiness } from "../business/PostBusiness";
+import { PostDTO } from "../model/PostDTO";
 
 export class PostController {
 
@@ -7,7 +8,7 @@ export class PostController {
         try {
             const { photo, description, type, authorId } = req.body
 
-            const input = { photo, description, type, authorId }
+            const input: PostDTO = { photo, description, type, authorId }
 
             const postBusiness = new PostBusiness()
             await postBusiness.create(input)

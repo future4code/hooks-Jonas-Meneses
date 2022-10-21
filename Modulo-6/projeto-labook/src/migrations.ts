@@ -1,3 +1,5 @@
+// não consegui rodar o migration , está tudo no arquivo querys.sql
+
 // import { connection } from "./index"
 
 // connection

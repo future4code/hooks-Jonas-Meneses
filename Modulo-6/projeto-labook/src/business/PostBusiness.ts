@@ -1,15 +1,17 @@
 import { PostDatabase } from "../data/PostDatabase"
+import { postDB } from "../model/PostDB"
+import { PostDTO } from "../model/PostDTO"
 import { generateId } from "../services/generateId"
 
 export class PostBusiness {
-    async create(input: any) {
+    async create(input: PostDTO) {
 
         try {
             const { photo, description, type, authorId } = input
             if (!photo || !authorId) throw new Error("Body incompleto")
 
             const postId = generateId()
-            const post = {
+            const post: postDB = {
                 id: postId,
                 photo,
                 description,
@@ -25,7 +27,7 @@ export class PostBusiness {
         }
     }
 
-    async getById(idUser: any) {
+    async getById(idUser: string) {
 
         try {
 
